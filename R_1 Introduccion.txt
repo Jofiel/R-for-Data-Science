@@ -1,0 +1,38 @@
+	Ciclo de ciencia de datos:
+
+-En nuestro modelo del proceso de ciencia de datos, se comienza con la importacion y el orden de los datos.
+ Comprende sus datos con un ciclo iterativo de transformacion, visualizacion y modelado. Terminando el proceso
+ comunicando tus resultados a otros humanos.
+
+ Los modelos:
+-Son herramientas complementarias a la visualizacion. Una vez que haya formulado sus preguntas lo suficientemente precisas, 
+ podra utilizar un modelo para responderlas. Los modelos son esencialmente herramientas matematicas o computacionales, generalmente
+ escalan bien. Incluso cuando no lo hacen "generalmente es mas barato comprar mas computadoras que comprar mas cerebros". Pero todo 
+ modelo parte de supociciones...
+
+ La programacion:
+-La programacion es un herramienta que se utiliza en casi todas las partes de un proyecto de analisis de datos. No es necesario ser un
+ programador experto para ser un cientifico de datos exitoso, pero aprender mas sobre programacion vale la pena porque convertirte en un
+ buen programador le permite automatizar las tareas comunes y resolver nuevos problemas con mayor facilidad.
+
+ 	REQUISITOS PREVIOS:
+
+-Descargar R: vamos al CRAN, la red integral de archivos de R, https://cloud.r-project.org/ 
+ Una version nueva de R sale cada año acompañado de dos menores, es una buena practica tener actualizados los paquetes de R.
+
+-Descargar RStudio: RStudio es un entorno de desarrollo integrado, o IDE, para programacion en R, que se puede descargar en: 
+ https://posit.co/download/rstudio-desktop/
+ Una vez descargados, los ejecutamos como administradores. 
+ 
+
+	PAQUETES Y TIDYVERSE:
+
+-Un paquete en R es una coleccion de funciones, datos y documentacion que amplian la capacidad de R base.
+ La mayoria de los paquetes que emplearemos en este curso son parte del sistema llamado Tidyverse.
+
+	INSTALANDO TIDYSERSE:
+-Escribimos la siguiente linea de codigo en la consola: install.packages("tidyverse")
+ Una vez ejecutada la linea de comando, R descargara los paquetes del CRAN y los instalara en la PC.
+
+ No podremos utilizar las funciones, objetos o archivos de ayuda de un paquete hasta que lo carguemos
+ como libreria con el comando: 
