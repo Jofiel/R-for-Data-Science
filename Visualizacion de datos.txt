@@ -1,6 +1,7 @@
 
 	Visualizacion de datos: 
 
+
 "El simple grafico ha aportado mas informacion a la mente del analista de datos que culaquier otro dispositivo"
  John Tukey
 	
@@ -14,9 +15,216 @@
  -Ademas de tidyverse, usaremos el paquete "palmerpenguins" que incluye el "penguins"conjunto de datos que contienen
  medidas corporales de pinguinos en tres islas del archipielago Palmer.
 
+
+
  1.2 Primeros pasos
 
  Los pinguinos con aletas mas largas pesan mas o menos que los pinguinos con aletas mas cortas?
+
+
+ 1.2.1 El penguins marco de datos.
+
+ -Necesitamos instalar el paquete palmerpenguins, para eso usamos el comando en consola:
+  
+  >install.packages("palmerpenguins")
+
+  The downloaded binary packages are in
+	C:\Users\Jofiel\AppData\Local\Temp\RtmpIlavcI\downloaded_packages
+
+ Con este mensaje sabemos que el paquete de datos se ha instalado correctamente. Ejecutamos la libreria:
+
+ >library(palmerpenguins)
+
+-El marco de datos que se encuentra en palmerpenguins, tambien conocido como "palmerpenguins::penguins"
+ si ejecutamos este comando en la consola: > palmerpenguins::penguins
+ nos proporciona una vista previa de su contenido el marco de datos (una tabla) con 344 observaciones recopiladas y puestas a disposicion por 
+ la Dra. Kristen Gorman y la estacion Palmer en la antartida. 
+
+ > palmerpenguins::penguins
+# A tibble: 344 × 8 --nos indica las columnas y los registros.
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year
+   <fct>   <fct>              <dbl>         <dbl>             <int>       <int> <fct>  <int>
+ 1 Adelie  Torgersen           39.1          18.7               181        3750 male    2007
+ 2 Adelie  Torgersen           39.5          17.4               186        3800 female  2007
+ 3 Adelie  Torgersen           40.3          18                 195        3250 female  2007
+ 4 Adelie  Torgersen           NA            NA                  NA          NA NA      2007
+ 5 Adelie  Torgersen           36.7          19.3               193        3450 female  2007
+ 6 Adelie  Torgersen           39.3          20.6               190        3650 male    2007
+ 7 Adelie  Torgersen           38.9          17.8               181        3625 female  2007
+ 8 Adelie  Torgersen           39.2          19.6               195        4675 male    2007
+ 9 Adelie  Torgersen           34.1          18.1               193        3475 NA      2007
+10 Adelie  Torgersen           42            20.2               190        4250 NA      2007 
+
+-Marco de datos:
+ Es una coleccion rectangular de variables (las columnas) y observaciones (filas).
+ -Variable: una cantidad, calidad o propiedad que se puede medir.
+ -Valor: el estado de una variable cuando se mide. Una variable de una medicion a otra puede cambiar.
+ -Observacion: es un conjunto de mediciones realizadas en condiciones similares (generalmente se 
+  realizan todas las mediciones en una observacion al mismo tiempo y al mismo objeto). Una observacion
+  contendra varios valores, cada uno asociado a una variable diferente. A veces no referimos a una
+  observacion como un punto de datos.
+-Datos tabulares son un conjunto de valores, cada uno asociado con una variable y una observacion. 
+ Los datos tabulares estan ordenados, si cada valor se coloca en su propia celda, cada variable en su 
+ propia columna y cada observacion en su propia fila.
+
+-En este contexto, una variable se refiere a un atributo de todos los pinguinos y una observacion se 
+ refiere a todos los atributos de un solo pinguino. 
+
+-El marco contiene 8 columnas. Para obtener una vista alternativa, donde podamos ver todas las variables y las
+ primeras observaciones de cada variable, utilizamos: View(penguins) para abrir "VISOR DE DATOS INTERACTIVO".
+
+> View(penguins) 
+La linea anterior nos proporciona todos los datos del marco penguins en el cuadro de editor
+
+> glimpse(penguins)
+Rows: 344
+Columns: 8
+$ species           <fct> Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie,…
+$ island            <fct> Torgersen, Torgersen, Torgersen, Torgersen, Torgersen, Torgersen, Torge…
+$ bill_length_mm    <dbl> 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, 42.0, 37.8, 37.8, 4…
+$ bill_depth_mm     <dbl> 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, 20.2, 17.1, 17.3, 1…
+$ flipper_length_mm <int> 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186, 180, 182, 191, 19…
+$ body_mass_g       <int> 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, 4250, 3300, 3700, 3…
+$ sex               <fct> male, female, female, NA, female, male, female, male, NA, NA, NA, NA, f…
+$ year              <int> 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007,…
+
+La linea previa nos proporciona una vista alternativa de el marco penguins.
+
+> ?penguins
+Nos proporciona informacion valiosa y detallada del marco de datos penguins.
+
+-Entre las variables se encuentran:
+	1-Especie: especie de pinguino Adelie, Chinstrap o Gentoo.
+	2-flipper_length_mm: longitud de la aleta de un pinguino, en milimetros.
+	3-body_mass_g: masa corporal de un pinguino, en gramos.
+
+
+
+
+1.2.2 Objetivo final:
+ 
+ Recrear una visualizacion que muestre la relacion entre la longitud de las aletas y las masas corporales de estos
+ pinguinos, teniendo en cuenta la especie del pinguino. 
+
+
+1.2.3 Creando un ggplot
+
+-Con ggplot2, comenzamos un trazo con la funcion "ggplot()", definiendo un objeto de trazado al que posteriormente
+agregaremos "capas". 
+
+El primer argumento de ggplot() es el conjunto de datos que se usaran en el grafico, por lo tanto, ggplot(data = penguins), crea 
+un grafico vacio que esta preparado para mostrar los penguins datos, como aun no le indicamos como debe visualizarlo esta vacio.
+Podemos considerarlo como un lienzo vacio sobre el que se pintara.
+
+>ggplot(data = penguins)
+
+A continuacion, debemos decir a ggplot como se presentara visualmente la informacion de nuestros datos. 
+-mapping, argumento de ggplot(), define como las variables de su conjunto se asignan a las propiedades visuales (estetica)
+ del grafico. 
+-El mapping argumento siempre se define con la funcion "aes()" y los argumentos x y que especifican que variables asignar a los
+ ejes x e y. 
+ Solo asignaremos la longitud de las aletas, y la masa corporal como:
+
+ ggplot(
+  data = penguins,
+  mapping = aes(x = flipper_length_mm, y = body_mass_g)
+)
+
+-La linea previa nos proporciona un plano cartesiano con el eje de x como longitud de las aletas mm y en el eje y masa corporal en g
+ Los Pinguinos todavia no estan en la trama. Esto se debe a que aun no hemos articulado, como representar las observaciones de nuestro
+ marco de datos en la grafica. 
+
+-geom:
+ Es el objeto geometrico que utiliza un grafico para representar datos. Estos objetos geometricos estan dispobibles en ggplot2 con 
+ funciones que comienzan por geom_.
+
+ Las personas suelen describir las tramas por el tipo de geom que utiliza. Por ejemplo graficos de barras usan geom de barras 
+ "geom_bar()", los graficos de lineas "geom_line()", los diagramas de cajas usan geom de cajas "geom_boxplot()" los diagramas de 
+ dispersion usan geom de puntos "geom_point()", etc.
+
+ La funcion geom_point() agrega una capa de puntos a su grafico, lo que crea un diagrama de dispersion. ggplot2 viene con muchas
+ funciones geom_ y cada una de ellas agrega un tipo diferente de capa a un grafico. 
+
+ > ggplot(data = penguins, mapping = aes(x=flipper_length_mm, y=body_mass_g)) + geom_point()
+
+ La linea anterior nos grafica longitud de aletas en mm contra masa en g y nos regresa estos datos en una grafica de dispersion. 
+
+ Este grafico de dispersion ya nos puede dar una respuesta a la pregunta que motivo nuestra exploracion, Como se relaciona la 
+ longitud de las aletas y la masa corporal? La relacion parece ser positiva (a medida que aumenta la longitud de las aletas, 
+ tambien aumenta la masa corporal), bastante linea (los puntos estan agrupados alrededor de una linea en lugar de una curva),
+ y moderadamente fuerte (no hay demasiada dispersion alrededor de dicha linea). Los pinguinos con aletas mas largas son generalmente
+ mas grandes en terminos de masa corporal.
+
+ Antes de agregar una capa a este grafico notemos el mensaje:
+
+ Se eliminaron 2 filas que contenían valores faltantes ( geom_point())
+
+ Este mensaje es porque hay dos pinguinos en nuestro conjunto de datos a los que les faltan valores de masa corporal y/o longitud
+ de las aletas y ggplot2 no tiene forma de representarlos en el grafico. 
+ Al igual que R ggplot2 es de la filosofia que los valores faltantes no deben desaparecer silenciosamente. Este tipo de advertencias
+ es probablemente uno de los tipos de advertencia mas comunes que vera cuando trabaje con datos reales. 
+
+
+
+
+ 1.2.4 Agregar estetica y capas:
+
+ Los diagrama de dispersion son utiles para mostrar la relacion entre dos variables numericas, pero siempre es una buena idea, ser eceptico
+ ante cualquier relacion aparente entre dos variables y preguntarse si pueden haber otras variables que cambien la naturaleza de esta
+ relacion. La longitud de las aletas y la masa corporal difieren segun la especie? Incorporemos especies a nuestro grafico y veamos si
+ esto revela informacion adicional sobre la aparente relacion entre estas variables. Lo haremos representando especies con puntos de 
+ diferentes colores.
+
+ Necesitaremos modificar el mapeo estetico, dentro de "aes()" como se muestra:
+
+> ggplot(data = penguins, mapping = aes(x=flipper_length_mm, y=body_mass_g, color=species)) + geom_point()
+
+ Warning message:
+ Removed 2 rows containing missing values (`geom_point()`). 
+
+ -Notas: cuando a una variable categorica (abscisas) se asigna a una estetica, ggplot2 asignara automaticamente un valor unico de la
+  estetica (aqui un color unico) a cada nivel unico de la variable (cada una de las tres especies), un proceso conocido como "escalado"
+  ggplot2 tambien agregara una leyenda que explique que valores corresponden a que nivel. 
+
+ -Agregaremos una curva suave que muestre la relacion entre la masa corporal y la longitud de las aletas. 
+  Dado que agregaremos un nuevo objeto geometrico a nuestros datos, agregaremos una nueva geom_ como una capa a nuestros puntos
+  geometricos geom_smooth() (smooth = lisa). Especificaremos que queremos dibujar la linea de mejor ajuste basada en el modelo l 
+  interno m con method = "lm"
+
+> ggplot(data = penguins, mapping = aes(x=flipper_length_mm,y=body_mass_g, color=species)) + geom_point() + geom_smooth(method = "lm")
+  
+   `geom_smooth()` using formula = 'y ~ x'
+  Warning messages:
+  1: Removed 2 rows containing non-finite values (`stat_smooth()`). 
+  2: Removed 2 rows containing missing values (`geom_point()`).
+
+-Nota: nos ha regresado tres lineas segun el "escalado" o asignacion estetica definidas en ggplot(), a nivel global se transmiten
+ a cada una de las capas geograficas posteriores de la trama. 
+
+ Sin embargo, cada funcion geom en ggplot2 tambien puede tomar un "mapping" de argumento, lo que permite mapeos esteticos.
+ Como queremos que los puntos se colooren segun las especies pero no queremos que las lineas esten separadas para ellos, 
+ debemos especificar solo color = species para geom_point(), como sigue:
+
+> ggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g))+geom_point(mapping = aes(color=species))+geom_smooth()
+
+ No es buena idea solo utilizar colores para distinguir en nuestro caso las especies de pinguinos, pues los colores pueden ser 
+ mal interpretados, para solucionar eso podemos usar formas. Ademas del color, tambien podemos mapear especies usando formas:
+
+> ggplot(data = penguins, mapping = aes(x=flipper_length_mm,y=body_mass_g))
++geom_point(mapping = aes(color=species,shape=species))
++geom_smooth(method="lm")
+
+
+-Nota: la leyenda se actualiza automaticamente para reflejar tambien las diferentes formas de los puntos. 
+
+ Finalmente podemos mejorar las etiquetas de nuestros graficos usando la funcion "labs()" en una nueva capa. Argumentos como
+ title añade titulo, subtitle añade un subtitulo a la trama, asi como renombrar los ejes y agregar una paleta de colores para
+ por ejemplo personas daltonicas. 
+
+ > ggplot(data = penguins, mapping = aes(x=flipper_length_mm,y=body_mass_g))+geom_point(mapping = aes(color=species,shape=species))
+ +geom_smooth(method="lm") + 
+ labs(title="Masa y longitud de aletas",subtitle = "Dimensiones de los pinguinos Adelie, Chinstrap y Gentoo"), x = "Longitus de aletas (mm)", y = "Masa corporal (g)") 
+
 
 
 
