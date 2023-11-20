@@ -1,0 +1,9 @@
+
+	Guia de usuario RStudio (https://docs.posit.co/ide/user/ide/guide/accessibility/accessibility.html)
+
+-MIRA Y SIENTE:
+	Podemos cambiar la apariencia de la interfaz de usuario eligiendo entre tres temas y muchos temas de editor.
+	Utilizamos Tools/Global options.. -->Appearance, quipodemos modificar la interfaz de RStudio, nos gusta
+	en lo personal Editor font: Cascadia Mono SemiBold y Editor theme: Gob.
+
+
