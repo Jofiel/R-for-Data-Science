@@ -4,13 +4,18 @@
  Comprende sus datos con un ciclo iterativo de transformacion, visualizacion y modelado. Terminando el proceso
  comunicando tus resultados a otros humanos.
 
- Los modelos:
+	Visualizacion:
+-Es una actividad fundamentalmente humana. Una buena visualizacion tambien podria indicar que estas haciendo la pregunta
+ equivocada o que necesitas recopilar datos diferentes. Las visualizaciones pueden sorprenderte, pero no se escalan particularmente
+ bien porque requieren de un humano que las interprete. 
+
+ 	Los modelos:
 -Son herramientas complementarias a la visualizacion. Una vez que haya formulado sus preguntas lo suficientemente precisas, 
  podra utilizar un modelo para responderlas. Los modelos son esencialmente herramientas matematicas o computacionales, generalmente
  escalan bien. Incluso cuando no lo hacen "generalmente es mas barato comprar mas computadoras que comprar mas cerebros". Pero todo 
- modelo parte de supociciones...
+ modelo parte de supociciones y por su propia naturaleza, un modelo no puede cuestionar sus propias suposiciones.
 
- La programacion:
+ 	La programacion:
 -La programacion es un herramienta que se utiliza en casi todas las partes de un proyecto de analisis de datos. No es necesario ser un
  programador experto para ser un cientifico de datos exitoso, pero aprender mas sobre programacion vale la pena porque convertirte en un
  buen programador le permite automatizar las tareas comunes y resolver nuevos problemas con mayor facilidad.
