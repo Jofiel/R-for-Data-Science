@@ -27,6 +27,6 @@
 		Tambien los podemos visualizar en View-->Paneles 
 		Estos comandos amplian la consola en una zona en especifico, usamos la misma secuencia para reducir el zoom de la consola
 		y restaurar el diseño anterior.
-	-Podemos personalizar que cuadrantes tienen determinadas pestañas
+	-Podemos personalizar que cuadrantes tienen determinadas pestañas...
 
 
