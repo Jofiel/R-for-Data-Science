@@ -1,9 +1,32 @@
 
-	Guia de usuario RStudio (https://docs.posit.co/ide/user/ide/guide/accessibility/accessibility.html)
+	Guia de usuario RStudio 
+	(https://docs.posit.co/ide/user/ide/guide/accessibility/accessibility.html)
 
 -MIRA Y SIENTE:
 	Podemos cambiar la apariencia de la interfaz de usuario eligiendo entre tres temas y muchos temas de editor.
 	Utilizamos Tools/Global options.. -->Appearance, quipodemos modificar la interfaz de RStudio, nos gusta
 	en lo personal Editor font: Cascadia Mono SemiBold y Editor theme: Gob.
+
+-Atajos de teclado:
+	Ctrl + 1> Para ir a la pestaña de editor.
+	Ctrl + 2> Para ir a la consola. 
+	Ctrl + 3> Para ir a la ayuda
+	Ctrl + 4> Para ir al historial.
+	Mas atajos los podemos encontrar en View
+	O en el siguiente articulo: https://docs.posit.co/ide/user/ide/guide/productivity/custom-shortcuts.html
+
+-Diseño: 
+	La ventana de RStudio es bastante compleja visualmente. Hay una barra de menu en la parte superior, una barra de herramientas
+	y cuatro cuadrantes, cada uno de los cuales contienen sus propias pestañas que a su vez contienen muchas funciones.
+
+	-Ocultar la barra de herramientas: View --> Hide Toolbar para mostrar View --> Show Toolbar
+	-Hacer zoom en una zona en especial: lo podemos hacer con el atajo de comando 
+		Ctrl + Shift + 2 para hacer zoom en la consola
+		Ctrl + Shift + 1 para hacer zoom en el editor.
+		Ctrl + Shift + 7 para hacer zoom en paquetes.
+		Tambien los podemos visualizar en View-->Paneles 
+		Estos comandos amplian la consola en una zona en especifico, usamos la misma secuencia para reducir el zoom de la consola
+		y restaurar el diseño anterior.
+	-Podemos personalizar que cuadrantes tienen determinadas pestañas
 
 
