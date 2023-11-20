@@ -1,0 +1,41 @@
+
+	Visualizacion de datos: 
+
+"El simple grafico ha aportado mas informacion a la mente del analista de datos que culaquier otro dispositivo"
+ John Tukey
+	
+ -R tiene varios sistemas para hacer graficos, pero ggplot2 es uno de los mas elegantes y versatiles ggplot2
+ implementa la "gramatica de graficos", un sistema coherente para describir y construir graficos.
+
+ -ggplot2 es uno de los paquetes principales de tidyverse.
+
+ -Solo se necesita instalar un paquete una vez, pero debemos cargarlo cada vez que iniciamos una nueva sesion.
+ 
+ -Ademas de tidyverse, usaremos el paquete "palmerpenguins" que incluye el "penguins"conjunto de datos que contienen
+ medidas corporales de pinguinos en tres islas del archipielago Palmer.
+
+ 1.2 Primeros pasos
+
+ Los pinguinos con aletas mas largas pesan mas o menos que los pinguinos con aletas mas cortas?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
