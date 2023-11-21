@@ -221,15 +221,66 @@ A continuacion, debemos decir a ggplot como se presentara visualmente la informa
  title añade titulo, subtitle añade un subtitulo a la trama, asi como renombrar los ejes y agregar una paleta de colores para
  por ejemplo personas daltonicas. 
 
+
  > ggplot(data = penguins, mapping = aes(x=flipper_length_mm,y=body_mass_g))+geom_point(mapping = aes(color=species,shape=species))+geom_smooth(method="lm") + 
  labs(title="Peso y longitud", subtitle = "Dimensiones de los pinguinos Adelie, Chinstrap y Gentoo", x = "Longitus de aletas (mm)", y = "Masa corporal (g)") 
 
 
+ Si queremos hacer mas grandes los puntos de nuestra grafica de dispersion, lo podemos hacer con zise dentro del "geom_point" y nuestro
+  codigo quedaria asi:
+
+  > ggplot(data = penguins, mapping = aes(x=flipper_length_mm,y=body_mass_g))+geom_point(mapping = aes(color=species,shape=species),size=4)+geom_smooth(method="lm") + 
++     labs(title="Peso y longitud", subtitle = "Dimensiones de los pinguinos Adelie, Chinstrap y Gentoo", x = "Longitus de aletas (mm)", y = "Masa corporal (g)")
 
 
 
 
+1.2.5 Ejercicios:
 
+-Cuantas filas hay penguins y cuantas columnas?
+
+> num_filas <- nrow(penguins) --declaramos una variable "num_filas" y le asignamos el valor que regresa la funcion "nrow()"
+> num_columnas <- ncol(penguins) --declaramos una variable "num_columnas" y le asignamos el valor que regresa la funcion "ncol()" 
+> cat("El marco de datos tiene", num_filas, "filas y", num_columnas, "columnas.\n") --concatenamos nuestra solucion.
+
+El marco de datos tiene 344 filas y 8 columnas.
+
+
+1.3 Llamadas a ggplot2 
+
+ Estos son los argumentos mas importantes de la funcion ggplot():
+
+ >ggplot(
+    data = penguins,
+    mapping = aes(x=flipper_length_mm, y=body_mass_g)
+ ) + geom_point()
+
+  Los dos primeros argumento de ggplot son data y mapping, pero podemos escribirlo de manera mas concisa obviando el hecho que 
+  sabemos los argumentos previos:
+
+>ggplot(
+    penguins,
+    aes(x=flipper_length_mm, y=body_mass_g)
+) + geom_point()
+
+Mas adelante aprenderemos sobre "tuberias" |> que nos ayudara a crear el mismo grafico de la siguiente manera:
+
+> penguins |>
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g)) + geom_point()
+
+
+  
+  1.4 Visualizando distribuciones:
+
+  La forma de visualizar distribuciones de una variable depende del tipo de variable: cateforica o numerica.
+
+
+  1.4.1 Una variable categorica:
+
+   Una variable "categorica" si solo puede tomar uno de un pequeño conjunto de valores. Para examinar la distribucion de una variable
+   categorica, podemos utilizar un grafico de barras. La altura de las barras muestra cuantas observaciones ocurrieron con cada x valor.
+   
+    
 
 
 
