@@ -221,9 +221,8 @@ A continuacion, debemos decir a ggplot como se presentara visualmente la informa
  title añade titulo, subtitle añade un subtitulo a la trama, asi como renombrar los ejes y agregar una paleta de colores para
  por ejemplo personas daltonicas. 
 
- > ggplot(data = penguins, mapping = aes(x=flipper_length_mm,y=body_mass_g))+geom_point(mapping = aes(color=species,shape=species))
- +geom_smooth(method="lm") + 
- labs(title="Masa y longitud de aletas",subtitle = "Dimensiones de los pinguinos Adelie, Chinstrap y Gentoo"), x = "Longitus de aletas (mm)", y = "Masa corporal (g)") 
+ > ggplot(data = penguins, mapping = aes(x=flipper_length_mm,y=body_mass_g))+geom_point(mapping = aes(color=species,shape=species))+geom_smooth(method="lm") + 
+ labs(title="Peso y longitud", subtitle = "Dimensiones de los pinguinos Adelie, Chinstrap y Gentoo", x = "Longitus de aletas (mm)", y = "Masa corporal (g)") 
 
 
 
