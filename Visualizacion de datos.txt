@@ -275,12 +275,71 @@ Mas adelante aprenderemos sobre "tuberias" |> que nos ayudara a crear el mismo g
   La forma de visualizar distribuciones de una variable depende del tipo de variable: cateforica o numerica.
 
 
-  1.4.1 Una variable categorica:
+  1.4.1 UNA VARIABLE CATEGORICA:
 
    Una variable "categorica" si solo puede tomar uno de un pequeño conjunto de valores. Para examinar la distribucion de una variable
    categorica, podemos utilizar un grafico de barras. La altura de las barras muestra cuantas observaciones ocurrieron con cada x valor.
-   
+
+   > ggplot(penguins, aes(x=species)) + geom_bar()
+
+   -Nota: el cual nos muestra un grafico de barras no ordenado con las diferentes tipos de especies de pinguinos.
+
+   En los graficos de barras de variables categoricas con niveles no ordenados, como el pinguino especie de arriba, a menudo es 
+   preferible ordenar las barras segun sus frecuencias. Hacerlo requiere transformar la variable en un factor (como maneja R los 
+   datos categoricos) y luego ordena los niveles de ese factor:
+
+   > ggplot(penguins, aes(x=fct_infreq(species))) + geom_bar() 
+
+   -Nota: el cual ordena el grafico de barras segun su frecuencia...
+
+
+
+   1.4.2 UNA VARIABLE NUMERICA:
+
+   Una variable numerica (o cuantitativa) si puede tomar una amplia gama de valores numericos y es sensato sumar, restar o tomar 
+   promedios de esos valores. Las variables numericas pueden ser continuas o discretas. 
+
+   Una visualizacion comunmente utilizada para distribuciones de variables continuas es un histograma, como el que se muestra:
+
+   > ggplot(penguins, aes(x = body_mass_g)) + geom_histogram(binwidth = 20, fill="blue", 
+            color="black")+labs(title = "Histograma de masa corporal", x = "Masa corporal (g)", y = "Frecuencia")
+
     
+    Una visualizacion alternativa para distribuciones de variables numericas es un grafico de densidad. Un grafico de densidad es 
+    una version suavizada de un histograma y una alternativa practica particualrmente para datos continuos que provienen de una 
+    distribucion suave
+
+  > ggplot(penguins, aes(body_mass_g))+geom_density(fill="blue", color = "black")
+   +labs(title = "Grafico densidad de masa corporal",x="Masa corporal (g",y="Frecuencia"))
+
+    
+  1.4.3 EJERCICIOS:
+
+   
+
+  
+
+  1.5 UNA VARIBALE NUMERICA Y UNA CATEGORICA:
+
+    Para visualizar esta relacion podemos utilizar diagramas de cajas uno a lado del otro. Un "diagrama de caja" es un tipo de 
+    taquigrafia visual para medidas de posicion (percentiles) que describen una distribucion. Tambien es utiil para identificar 
+    posibles valores atipicos, un diagrama de caja consta de:
+
+      Un cuadro que muestra la mitad media de los datos, una distancia conocida como "rango intercuartil" (IQR), que se 
+      extiende desde el percentil 25 de la distribucion hasta el percentil 75. En medio del cuadro hay una linea que muestra
+      la mediana, es decir, el percentil 50, de la distrubucion. Estas tres lineas nos dan una idea de la distrubucion y de si 
+      la distribucion es simetrica con respecto a la mediana o esta sesgada hacia un lado.
+
+      Puntos visuales que muestran observaciones que caen mas de 1.5 veces el IQR desde cualquier borde del cuadro. Estos puntos
+      son inusuales por lo cual se trazan individualmente. 
+
+      Una linea o bigote que se extiende desde cualquier extremo de la caja y llega al punto no atipico mas alejado de la distribucion.
+
+      Asi es la distribucion de masa corporal por especie usando geom_boxplot():
+
+  
+  >ggplot(penguins,aes(x=species,y=body_mass_g,fill=species))+geom_boxplot(outlier.color = "red",boxplot.colour = "blue")
+  +labs(title="Analisis Cuartilico por especie",subtitle ="Diagrama de cajas",x="Especie",y="Masa (g)")
 
 
 
