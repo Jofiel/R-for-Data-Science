@@ -342,6 +342,18 @@ Mas adelante aprenderemos sobre "tuberias" |> que nos ayudara a crear el mismo g
   +labs(title="Analisis Cuartilico por especie",subtitle ="Diagrama de cajas",x="Especie",y="Masa (g)")
 
 
+    Alternativamente podemos hacer graficos de densidad con geom_density().
+
+  > ggplot(penguins, aes(x=body_mass_g,color=species))+geom_density(linewidth=1.5)+
+  labs(title = "Distribucion normal",subtitle="Densidad por especie",x="Masa (g)",y="Densidad")
+
+   -Nota: podemos personalizar el grosor de las lineas usando el argumento "linewidth" para que resalte un poco sobre el fondo.
+    Ademas podemos agregar color a las especies con "fill" y usar "alpha" para agregar transparencia a las curvas de densidad, 
+    Esta estetica toma valores entre 0 y 1 donde 1 es completamente opaca.
+
+
+
+    
 
 
 
