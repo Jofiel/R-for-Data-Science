@@ -1,0 +1,53 @@
+
+Conexion a R:
+
+1. Para poder crear una conexion a SQLite, debemos descargar el paquete de SQLite: 
+
+	install.packages("RSQLite") 
+
+2. Cargar la libreria de SQLite:
+
+	library(RSQLite)
+
+3. Creamos una variable local donde guardaremos nuestra conexion:
+
+	conexion <- dbConnect(SQLite(),dbname="C:/SQLite/MOD/MOD.db")
+
+4. Podemos revisar la conexion con el comando:
+
+	dbListTables(conexion)
+
+5. Creamos una variable local donde almacenamos nuestro Query, en caso de necesitarlo para resumir la informacion:
+
+	query <- "select mvtas.SEO as SEO, sum(mvtas.Venta) as Venta from mvtas group by mvtas.SEO"
+	
+	Este query calcula la suma de la venta por SEO
+
+6. Creamos una variable local donde almacenamos la conexion con el query, que esta sera la conexion final que se pasara a la data del ggplot.
+
+	venta <- dbGetQuery(conexion, query)
+
+7. Nuestra grafica la podremos hacer con el siguiente comando:
+
+	ggplot(data=venta, mapping=aes(x=SEO, y=Venta, fill=SEO)) + geom_bar(stat="identity")
+
+	
+	Nota: el argumento stat="identity" de la funcion geom_bar() indica que los valores en el eje y (Venta)
+	representa directamente la altura de las barras. Estamos diciendo a ggplot que no realiza ninguna 
+	transformacion estadistica en los datos antes de representarlos como barras. Este es un enfoque 
+	comun cuando ya tenemos los datos agregados y simplemente queremos representarlos.
+
+	fill=SEO en la funcion de la estetica mapping = aes(fill=SEO), nos regresa un color diferente para
+	cada una de las barras
+
+8. Agregando una capa:
+
+	ggplot(data=data, mapping = aes(x=SEO, y=Venta, fill=SEO),color =SEO)+geom_bar(stat = "identity")+scale_fill_discrete()
+
+	Nota: +scale_fill_discrete() garantiza que los colores asignados sean diferentes, tambien podemos definir los colores de 
+	forma manual con la capa + scale_fill_manual(values=c("red","blue","green","purple",...))
+ 
+
+
+
+	 
