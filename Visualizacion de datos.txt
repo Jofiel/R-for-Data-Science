@@ -352,12 +352,67 @@ Mas adelante aprenderemos sobre "tuberias" |> que nos ayudara a crear el mismo g
     Esta estetica toma valores entre 0 y 1 donde 1 es completamente opaca.
 
 
-
-    
-
+  > ggplot(penguins, aes(x=body_mass_g, color=species, fill=species))+geom_density(alpha=0.5)+labs(title = "Histograma de densidad")
 
 
+    -Nota: con el argumento "alpha" en la funcion estetica aes() agregamos nuestro grafico transparencia y toma valores entre 0
+     completamente transparente y 1 completamente opaco y con la funcion 
+     "linewidth" que usamos como argumento en la funcion geom_density() hacemos qe resalte mas el contorno de nuestra grafica,
+     geom_density(linewidth=0.75) 
 
+     Asignamos valores a la estetica si queremos que el atributo visual representado por esa estetica varie en funcion de los 
+     valores de esa variable.
+
+
+
+  1.5.2 DOS VARIABLES CATEGORICAS:
+
+    Podemos utilizar graficos de barras apilados para visualizar la relacion entre dos variables categoricas. 
+    por ejemplo: "islandy" y "species", o visualizar la distribucion de especies  
+
+
+  >ggplot(penguins, aes(x = island, fill = species)) + geom_bar(position = "fill")
+
+
+
+  1.5.3 DOS VARIABLES NUMERICAS:
+
+    Un diagrama de dispersion es problablemente el diagrama mas utilizado para visualizar la relacion entre dos variables numericas.
+   > ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) + geom_point()
+
+  1.5.4 TRES O MAS VARIABLES:
+
+    Podemos utilizar mas variables en la trama asignandolas a una estetica tradicional.
+    Sin embargo agregar demasiadas asignaciones esteticas a una trama la vuelven desordenada y dificil de entender. 
+
+    Por ejemplo en el siguiente diagrama, los colores de los punto representan las especies y las formas representan islas:
+
+    > ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) + geom_point(aes(color = species, shape = island))
+
+
+    Otra forma de analizarlo es con variables categoricas, es dividir el grafico en facetas, subtramas, cada uno de las cuales 
+    muestra un subconjunto de datos:
+
+    facet_wrap(): Para facetar un grafico con una sola variable. El prime argumento es una formula, seguida de ~ el nombre de una
+    variable categorica. 
+
+
+   > ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) + geom_point(aes(color = species, shape = species)) + facet_wrap(~island)     
+
+
+  1.6 GUARDANDO TUS DIAGRAMAS:
+
+    Para guardar un grafico y trasladarlo a otro lugar usamos la funcion "ggsave()" que guarda el ultimo grafico creado en el disco.
+
+  > ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) + geom_point() ggsave(filename = "penguin-plot.png")
+
+
+  Nota final: Un erro comun es colocar el signo de mas al inicio del codigo, pero este siempre va al final:
+
+  > ggplot(data = mpg) 
++ geom_point(mapping = aes(x = displ, y = hwy))
+
+  Esto es lo que no debemos hacer.
 
 
 
