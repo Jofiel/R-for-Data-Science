@@ -1,10 +1,52 @@
 2. FLUJO DE TRABAJO: conceptos basicos
 
-2.1 Conceptos basicos
+  2.1 Conceptos basicos
   Puedes usar R para hacer calculos matematicos basicos:
+
   1 / 200 * 30
   #> [1] 0.15
-(59 + 73 + 2) / 3
-#> [1] 44.66667
-sin(pi / 2)
-#> [1] 1
+  (59 + 73 + 2) / 3
+  #> [1] 44.66667
+  sin(pi / 2)
+  #> [1] 1
+
+  Operador de asignacion:
+  Podemos crear nuevos objetos con el operador de asignacion "<-"
+  x <- 3 * 4
+  x
+  #>[1] 12
+
+  -Nota: tengamos en cuenta que el valor de x no se imprime, simplemente se almacena. Si deseas ver el valor , solo escribimos x en la
+  consola.
+
+  Vector:
+  podemos combinar varios elementos en un vector c():
+  > primos <- c(2,3,5,7,11,13)
+  > primos
+  [1]  2  3  5  7 11 13
+
+
+  Aritmetica de vectores:
+  La aritmetica basica de vectores se aplica a cade elemento del vector, producto por un escalar
+  > primos * 2
+  [1]  4  6 10 14 22 26
+  > primos - 1
+  [1]  1  2  4  6 10 12
+
+
+  Abreviacion de asignacion:
+  El metodo de asignacion rapido es el atajo de teclas "Alt + -" 
+
+
+  Comentarios:
+  R ignora cualquier texto posterior a "#" a esa linea. Esto le permite escribir comentarios
+  # crear vector de primos
+  primes <- c(2, 3, 5, 7, 11, 13)
+  
+  #multiplicar primos por 2
+  primes * 2
+  #> [1]  4  6 10 14 22 26
+
+  -Notas: utilicemos comentarios para explicar el porque de su codigo, no el como ni el que.
+  Para el codigo de analisis de datos, utilice comentarios para explicar el plan general del ataque y 
+  registramos.
