@@ -407,7 +407,8 @@ Mas adelante aprenderemos sobre "tuberias" |> que nos ayudara a crear el mismo g
   > ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) + geom_point() ggsave(filename = "penguin-plot.png")
 
 
-  Nota final: Un erro comun es colocar el signo de mas al inicio del codigo, pero este siempre va al final:
+  Nota final: Un error comun es colocar el signo de mas al inicio del codigo al salto de una linea, pero este siempre va al final de 
+  una linea:
 
   > ggplot(data = mpg) 
 + geom_point(mapping = aes(x = displ, y = hwy))
