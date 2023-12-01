@@ -50,3 +50,60 @@
   -Notas: utilicemos comentarios para explicar el porque de su codigo, no el como ni el que.
   Para el codigo de analisis de datos, utilice comentarios para explicar el plan general del ataque y 
   registramos.
+
+
+  2.3 NOMBRES:
+
+  Los nombres de los objetos deben comenzar con una letra y solo pueden contener letras, numeros _ y ..
+  Queremos que los nombres de nuestros objetos sean descriptivos, debemos utilizar una convencion. Donde
+  Snak_case se separan las palabras en minusculas con _ 
+
+  i_use_snake_case
+  otherPeopleUseCamelCase
+  some.people.use.periods
+  And_aFew.People_RENOUNCEconvention
+
+
+  LISTADO DE HISTORICO:
+  Para poder visualizar una lista despegable con los ultimos comandos, podemos colocarnos en la ventana de consola
+  y precional el atajo "Ctrl + Flecha arriba" esto hara que se despliegue una lista con los ultimos comandos ejecutados.
+
+
+  3.4 FUNCIONES DE LLAMADA:
+
+  R tiene una gran coleccion de funciones integradas que se llaman asi:
+  
+  function_name(argument1 = value1, argument2 = value2, ...)
+
+  Usemos la funcion seq(), que crea secuencias regulares de numeros.
+  Escribamos en la consola o en nuestro editor las iniciales de nuestra funcion,
+  "se" posteriormente presionamos "tab" y creara una ventana emergente con nuestras
+  posibles finalizaciones, si presionamos "q" esto ayudara a reducir las posibilidades, si estamos en la lista
+  emergente y nos posicionamos sobre una funcion y presionamos "F1" esto nos mostrara la ayuda 
+  en la ventana de "utilidades", finalmente con tabulador seleccionamos la funcion nos abrira parentesis y los cerrara:
+
+  > seq(from=1,to=10)
+ [1]  1  2  3  4  5  6  7  8  9
+
+ A menudo se omiten los nombres de los primeros argumentos en las llamadas a funciones, por lo que podemos
+ tambien escribirlo:
+
+ > seq(1,10)
+ [1]  1  2  3  4  5  6  7  8  9 10
+
+  Si escribimos una expresion y olvidamos cerrar, ya sea comillas o parentesis, R proporcionara un signo de +
+
+  > x <- "hello
+  +
+
+  Esto significa que R esta esperando mas entradas; no cree que hayamos terminado, podemos presionar "esc" o 
+  solo escribir las comillas o parentesis que nos hace falta.
+
+  En la ventana de entorno nos muestra todos los objetos que hemos creado.
+
+
+  2.5 EJERCICIOS:
+
+  
+
+
