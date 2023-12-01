@@ -120,6 +120,66 @@ y x |> f(y) |> g(z) es equivalente a g(f(x, y), z). Esto hace posible entender:
 # ℹ Use `print(n = ...)` to see more rows
 
 
+3.2 FILAS:
 
+    La funcion mas importante que opera en las filas, registros o rows de un conjunto de datos
+    son "filter()" que cambia que filas estan presentes sin cambiar su orden, y "arrange()" que
+    cambia el orden de las filas sin cambiar cuales estan presentes. Ambas funciones solo afectan 
+    a las filas no modifican a las columnas.
+    "distinct()" que encuentra filas con valores unicos pero diferentes "arrange()" y "filter()"
+
+
+    3.2.1 filter()
+    Permite mantener filas basadas en los valores de las columnas. El primer argumenrto es el marco
+    de datos. El segundo argumento y los siguientes son las condiciones que deben de ser verdaderas
+    para mantener la fila.
+
+    Ejercicio: queremos todos los vuelos que salieron con mas de 120 min de retraso
+
+    > flights |>
++   filter(dep_delay > 120)
+
+# A tibble: 9,723 × 19
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time arr_delay carrier flight tailnum
+   <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>     <dbl> <chr>    <int> <chr>  
+ 1  2013     1     1      848           1835       853     1001           1950       851 MQ        3944 N942MQ 
+ 2  2013     1     1      957            733       144     1056            853       123 UA         856 N534UA 
+ 3  2013     1     1     1114            900       134     1447           1222       145 UA        1086 N76502 
+ 4  2013     1     1     1540           1338       122     2020           1825       115 B6         705 N570JB 
+ 5  2013     1     1     1815           1325       290     2120           1542       338 EV        4417 N17185 
+ 6  2013     1     1     1842           1422       260     1958           1535       263 EV        4633 N18120 
+ 7  2013     1     1     1856           1645       131     2212           2005       127 AA         181 N323AA 
+ 8  2013     1     1     1934           1725       129     2126           1855       151 MQ        4255 N909MQ 
+ 9  2013     1     1     1938           1703       155     2109           1823       166 EV        4300 N18557 
+10  2013     1     1     1942           1705       157     2124           1830       174 MQ        4410 N835MQ 
+# ℹ 9,713 more rows
+# ℹ 7 more variables: origin <chr>, dest <chr>, air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+#   time_hour <dttm>
+# ℹ Use `print(n = ...)` to see more rows
 
   
+    Ademas de > (mayor que), podemos usar >= (mayor o igual que), < (menor que), <= (menor o igual que), == (igual que)
+    y != (distinto de). Tambien podemos combinar condiciones con los operadores "&" para indicar "y" o con "|" para
+    indicar "o" 
+
+    Ejercicio: queremos una base de datos con todos los vuelos del primero de enero:
+
+    > flights |>
++   filter(month == 1 & day == 1)
+# A tibble: 842 × 19
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time arr_delay carrier flight tailnum
+   <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>     <dbl> <chr>    <int> <chr>  
+ 1  2013     1     1      517            515         2      830            819        11 UA        1545 N14228 
+ 2  2013     1     1      533            529         4      850            830        20 UA        1714 N24211 
+ 3  2013     1     1      542            540         2      923            850        33 AA        1141 N619AA 
+ 4  2013     1     1      544            545        -1     1004           1022       -18 B6         725 N804JB 
+ 5  2013     1     1      554            600        -6      812            837       -25 DL         461 N668DN 
+ 6  2013     1     1      554            558        -4      740            728        12 UA        1696 N39463 
+ 7  2013     1     1      555            600        -5      913            854        19 B6         507 N516JB 
+ 8  2013     1     1      557            600        -3      709            723       -14 EV        5708 N829AS 
+ 9  2013     1     1      557            600        -3      838            846        -8 B6          79 N593JB 
+10  2013     1     1      558            600        -2      753            745         8 AA         301 N3ALAA 
+# ℹ 832 more rows
+# ℹ 7 more variables: origin <chr>, dest <chr>, air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+#   time_hour <dttm>
+# ℹ Use `print(n = ...)` to see more rows
