@@ -1,3 +1,125 @@
 
 3.1 INTRODUCCION:
+
+    La visualizacion es una herramienta importante, pero es raro cuando obtenemos la informacion exactamente como la
+    necesitamos para crear ese grafico deseado.
+
+    3.1.2 VUELOS nycf13
+
+    Usaremos el paquete "nycflights13" Este conjunto de datos contiene los 336,776 vuelos que partieron de la ciudad de 
+    New York en el 2013. Los datos provienen de la Oficina de Estadistica de  Transporte de E.U. y estan documentados en 
+    ?flights
+
+    Instalamos el paquete:
+
+    > install.packages("nycflights13")
+
+    Cargamos la libreria:
+
+    > library(nycflights13)
+
+    Podemos ver un recumen de los datos con el comando ya sea en el editor o en la consola, escribiendo:
+
+    > nycflights13::flights
+# A tibble: 336,776 × 19
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time arr_delay carrier flight tailnum
+   <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>     <dbl> <chr>    <int> <chr>  
+ 1  2013     1     1      517            515         2      830            819        11 UA        1545 N14228 
+ 2  2013     1     1      533            529         4      850            830        20 UA        1714 N24211 
+ 3  2013     1     1      542            540         2      923            850        33 AA        1141 N619AA 
+ 4  2013     1     1      544            545        -1     1004           1022       -18 B6         725 N804JB 
+ 5  2013     1     1      554            600        -6      812            837       -25 DL         461 N668DN 
+ 6  2013     1     1      554            558        -4      740            728        12 UA        1696 N39463 
+ 7  2013     1     1      555            600        -5      913            854        19 B6         507 N516JB 
+ 8  2013     1     1      557            600        -3      709            723       -14 EV        5708 N829AS 
+ 9  2013     1     1      557            600        -3      838            846        -8 B6          79 N593JB 
+10  2013     1     1      558            600        -2      753            745         8 AA         301 N3ALAA 
+# ℹ 336,766 more rows
+# ℹ 7 more variables: origin <chr>, dest <chr>, air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+#   time_hour <dttm>
+# ℹ Use `print(n = ...)` to see more rows
+
+
+3.2.2 TIBLLE (titubeo)
+flights es un "tibble" un tipo especial de marco de datos utilizado por tidyverse para evitar algunos errores comunes. 
+La diferencia mas notable entre tibbles y marcos de datos es la forma en la que se imprimen los tibles; estan diseñados
+para conjuntos de datos grandes, por lo que solo muestran las primeras filas y solo las columnas que caben en la pantalla.
+
+View(flights) abrira una vista interactiva desplazable y filtrable en ventana de edicion.
+
+glimpse(flights) es una funcion de el paquete "tidyverse" asi que tenemos que cargar previamente este paquete, para poder hacer
+uso de la funcion, que nos muestra las columnas de una tabla:
+
+> glimpse(flights)
+Rows: 336,776
+Columns: 19
+$ year           <int> 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 20…
+$ month          <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+$ day            <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+$ dep_time       <int> 517, 533, 542, 544, 554, 554, 555, 557, 557, 558, 558, 558, 558, 558, 559, 559, 559, 6…
+$ sched_dep_time <int> 515, 529, 540, 545, 600, 558, 600, 600, 600, 600, 600, 600, 600, 600, 600, 559, 600, 6…
+$ dep_delay      <dbl> 2, 4, 2, -1, -6, -4, -5, -3, -3, -2, -2, -2, -2, -2, -1, 0, -1, 0, 0, 1, -8, -3, -4, -…
+$ arr_time       <int> 830, 850, 923, 1004, 812, 740, 913, 709, 838, 753, 849, 853, 924, 923, 941, 702, 854, …
+$ sched_arr_time <int> 819, 830, 850, 1022, 837, 728, 854, 723, 846, 745, 851, 856, 917, 937, 910, 706, 902, …
+$ arr_delay      <dbl> 11, 20, 33, -18, -25, 12, 19, -14, -8, 8, -2, -3, 7, -14, 31, -4, -8, -7, 12, -6, -8, …
+$ carrier        <chr> "UA", "UA", "AA", "B6", "DL", "UA", "B6", "EV", "B6", "AA", "B6", "B6", "UA", "UA", "A…
+$ flight         <int> 1545, 1714, 1141, 725, 461, 1696, 507, 5708, 79, 301, 49, 71, 194, 1124, 707, 1806, 11…
+$ tailnum        <chr> "N14228", "N24211", "N619AA", "N804JB", "N668DN", "N39463", "N516JB", "N829AS", "N593J…
+$ origin         <chr> "EWR", "LGA", "JFK", "JFK", "LGA", "EWR", "EWR", "LGA", "JFK", "LGA", "JFK", "JFK", "J…
+$ dest           <chr> "IAH", "IAH", "MIA", "BQN", "ATL", "ORD", "FLL", "IAD", "MCO", "ORD", "PBI", "TPA", "L…
+$ air_time       <dbl> 227, 227, 160, 183, 116, 150, 158, 53, 140, 138, 149, 158, 345, 361, 257, 44, 337, 152…
+$ distance       <dbl> 1400, 1416, 1089, 1576, 762, 719, 1065, 229, 944, 733, 1028, 1005, 2475, 2565, 1389, 1…
+$ hour           <dbl> 5, 5, 5, 5, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,…
+$ minute         <dbl> 15, 29, 40, 45, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0, 0, 0, 0, 10, 5, 10, 10, 7, 0,…
+$ time_hour      <dttm> 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2…
+
+La cual nos muestra informacion mas detallada de cada columna asi como su "data type" <int> es un entero, <dbl>
+es la abreviatura de doble o de un real, <chr> de caracter, tambien conocido como cadena, <dttm> de fecha y hora.
+Esta informacion es importante porque las operaciones que podemos realizar a una columna dependen de gran medida
+de su tipo.
+
+
+3.1.3 CONCEPTOS BASICOS DE dplyr
+
+Generalidades de funciones en la libreria dplyr:
+
+    1. EL primer argumento es siempre un marco de datos.
+
+    2. Los argumentos siguientes normalmente describen en que columnas operar,
+    utilizando los nombres de las variables (sin comillas).
+
+    3.La salida siempre es un nuevo marco de datos (Base Datos).
+
+Debido a que cada funcion hace bien una cosa, se requerira para resolver problemas complejos anidar funciones y 
+lo haremos con la barra vertical |> Hablaremos mas adelante en 3.4 sobre tuberias, pero en resumen las tuberias
+toman lo que esta a su izquierda y lo pasa a la funcion a su derecha, de modo que x |> f(y) equivale a f(x, y)
+y x |> f(y) |> g(z) es equivalente a g(f(x, y), z). Esto hace posible entender:
+
+> flights |>  #Pasamos la data y anidamos por medio de tuberia |>
++   filter(dest == "IAH") |> #filtramos por la columna dest
++   group_by(year, month, day) |> # agrupamos por las columnas de año, mes y dia y pasamos |>
++   summarize(
++     arr_delay = mean(arr_delay, na.rm = TRUE)
++   )
+`summarise()` has grouped output by 'year', 'month'. You can override using the `.groups` argument.
+# A tibble: 365 × 4
+# Groups:   year, month [12]
+    year month   day arr_delay
+   <int> <int> <int>     <dbl>
+ 1  2013     1     1     17.8 
+ 2  2013     1     2      7   
+ 3  2013     1     3     18.3 
+ 4  2013     1     4     -3.2 
+ 5  2013     1     5     20.2 
+ 6  2013     1     6      9.28
+ 7  2013     1     7     -7.74
+ 8  2013     1     8      7.79
+ 9  2013     1     9     18.1 
+10  2013     1    10      6.68
+# ℹ 355 more rows
+# ℹ Use `print(n = ...)` to see more rows
+
+
+
+
   
