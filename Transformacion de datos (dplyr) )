@@ -132,6 +132,7 @@ y x |> f(y) |> g(z) es equivalente a g(f(x, y), z). Esto hace posible entender:
     "distinct()" que encuentra filas con valores unicos pero diferentes "arrange()" y "filter()"
 
 
+    
     3.2.1 filter()
     Permite mantener filtros basadas en los valores de las columnas. El primer argumento es el marco
     de datos. El segundo argumento y los siguientes son las condiciones que deben de ser verdaderas
@@ -214,25 +215,94 @@ y x |> f(y) |> g(z) es equivalente a g(f(x, y), z). Esto hace posible entender:
 
     Ejercicio: Una forma mas corta de seleccionar vuelos que salieron en enero o febrero. Con el operador in y un vector.
 
-    > flights |>
-+ filter(month %in% c(1,2))
-# A tibble: 51,955 × 19
-    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time arr_delay carrier flight tailnum
-   <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>     <dbl> <chr>    <int> <chr>  
- 1  2013     1     1      517            515         2      830            819        11 UA        1545 N14228 
- 2  2013     1     1      533            529         4      850            830        20 UA        1714 N24211 
- 3  2013     1     1      542            540         2      923            850        33 AA        1141 N619AA 
- 4  2013     1     1      544            545        -1     1004           1022       -18 B6         725 N804JB 
- 5  2013     1     1      554            600        -6      812            837       -25 DL         461 N668DN 
- 6  2013     1     1      554            558        -4      740            728        12 UA        1696 N39463 
- 7  2013     1     1      555            600        -5      913            854        19 B6         507 N516JB 
- 8  2013     1     1      557            600        -3      709            723       -14 EV        5708 N829AS 
- 9  2013     1     1      557            600        -3      838            846        -8 B6          79 N593JB 
-10  2013     1     1      558            600        -2      753            745         8 AA         301 N3ALAA 
-# ℹ 51,945 more rows
-# ℹ 7 more variables: origin <chr>, dest <chr>, air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
-#   time_hour <dttm>
+    > flights |> 
+    + arrange(year, month, day, dep_time)
+
+
+# A tibble: 336,776 × 19
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time arr_delay carrier flight tailnum origin dest  air_time distance  hour minute
+   <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>     <dbl> <chr>    <int> <chr>   <chr>  <chr>    <dbl>    <dbl> <dbl>  <dbl>
+ 1  2013     1     1      517            515         2      830            819        11 UA        1545 N14228  EWR    IAH        227     1400     5     15
+ 2  2013     1     1      533            529         4      850            830        20 UA        1714 N24211  LGA    IAH        227     1416     5     29
+ 3  2013     1     1      542            540         2      923            850        33 AA        1141 N619AA  JFK    MIA        160     1089     5     40
+ 4  2013     1     1      544            545        -1     1004           1022       -18 B6         725 N804JB  JFK    BQN        183     1576     5     45
+ 5  2013     1     1      554            600        -6      812            837       -25 DL         461 N668DN  LGA    ATL        116      762     6      0
+ 6  2013     1     1      554            558        -4      740            728        12 UA        1696 N39463  EWR    ORD        150      719     5     58
+ 7  2013     1     1      555            600        -5      913            854        19 B6         507 N516JB  EWR    FLL        158     1065     6      0
+ 8  2013     1     1      557            600        -3      709            723       -14 EV        5708 N829AS  LGA    IAD         53      229     6      0
+ 9  2013     1     1      557            600        -3      838            846        -8 B6          79 N593JB  JFK    MCO        140      944     6      0
+10  2013     1     1      558            600        -2      753            745         8 AA         301 N3ALAA  LGA    ORD        138      733     6      0
+# ℹ 336,766 more rows
+# ℹ 1 more variable: time_hour <dttm>
 # ℹ Use `print(n = ...)` to see more rows
 
-    Notas: Cuando ejecutas filter() dplyr ejecuta
+
+    Ejercicio: Ordenar el marco de datos flights por el campo dep_delay de forma descendente (mayor a menor).
+
+    > flights |> 
++ arrange(desc(dep_delay))
+
+
+# A tibble: 336,776 × 19
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time arr_delay carrier flight tailnum origin dest  air_time distance  hour minute
+   <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>     <dbl> <chr>    <int> <chr>   <chr>  <chr>    <dbl>    <dbl> <dbl>  <dbl>
+ 1  2013     1     9      641            900      1301     1242           1530      1272 HA          51 N384HA  JFK    HNL        640     4983     9      0
+ 2  2013     6    15     1432           1935      1137     1607           2120      1127 MQ        3535 N504MQ  JFK    CMH         74      483    19     35
+ 3  2013     1    10     1121           1635      1126     1239           1810      1109 MQ        3695 N517MQ  EWR    ORD        111      719    16     35
+ 4  2013     9    20     1139           1845      1014     1457           2210      1007 AA         177 N338AA  JFK    SFO        354     2586    18     45
+ 5  2013     7    22      845           1600      1005     1044           1815       989 MQ        3075 N665MQ  JFK    CVG         96      589    16      0
+ 6  2013     4    10     1100           1900       960     1342           2211       931 DL        2391 N959DL  JFK    TPA        139     1005    19      0
+ 7  2013     3    17     2321            810       911      135           1020       915 DL        2119 N927DA  LGA    MSP        167     1020     8     10
+ 8  2013     6    27      959           1900       899     1236           2226       850 DL        2007 N3762Y  JFK    PDX        313     2454    19      0
+ 9  2013     7    22     2257            759       898      121           1026       895 DL        2047 N6716C  LGA    ATL        109      762     7     59
+10  2013    12     5      756           1700       896     1058           2020       878 AA         172 N5DMAA  EWR    MIA        149     1085    17      0
+# ℹ 336,766 more rows
+# ℹ 1 more variable: time_hour <dttm>
+# ℹ Use `print(n = ...)` to see more rows
+
+
+
+    Notas: Notemos que el numero de filas no ha cambiado, solo estamos organizando los datos, no los estamos filtrando.
+
+
+
+    3.2.4 DISTINCT()
+
+        Encuentra todas las filas unicas en un conjunto de datos, por lo que, opera principalmente en las filas. Sin embargo,
+        la mayoria de las veces querras la combinacion distinta de algunas variables, por lo que tambien puedes proporcionar
+        nombres de columnas.
+
+
+
+        Ejercicio: proporcionar marco de datos solo con valores unicos.
+
+        > flights |>
++ distinct()
+# A tibble: 336,776 × 19
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time arr_delay carrier flight tailnum origin dest  air_time distance  hour minute
+   <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>     <dbl> <chr>    <int> <chr>   <chr>  <chr>    <dbl>    <dbl> <dbl>  <dbl>
+ 1  2013     1     1      517            515         2      830            819        11 UA        1545 N14228  EWR    IAH        227     1400     5     15
+ 2  2013     1     1      533            529         4      850            830        20 UA        1714 N24211  LGA    IAH        227     1416     5     29
+ 3  2013     1     1      542            540         2      923            850        33 AA        1141 N619AA  JFK    MIA        160     1089     5     40
+ 4  2013     1     1      544            545        -1     1004           1022       -18 B6         725 N804JB  JFK    BQN        183     1576     5     45
+ 5  2013     1     1      554            600        -6      812            837       -25 DL         461 N668DN  LGA    ATL        116      762     6      0
+ 6  2013     1     1      554            558        -4      740            728        12 UA        1696 N39463  EWR    ORD        150      719     5     58
+ 7  2013     1     1      555            600        -5      913            854        19 B6         507 N516JB  EWR    FLL        158     1065     6      0
+ 8  2013     1     1      557            600        -3      709            723       -14 EV        5708 N829AS  LGA    IAD         53      229     6      0
+ 9  2013     1     1      557            600        -3      838            846        -8 B6          79 N593JB  JFK    MCO        140      944     6      0
+10  2013     1     1      558            600        -2      753            745         8 AA         301 N3ALAA  LGA    ORD        138      733     6      0
+# ℹ 336,766 more rows
+# ℹ 1 more variable: time_hour <dttm>
+# ℹ Use `print(n = ...)` to see more rows
+
+
+    Ejercicio: encuentra todos los pares unicos de origen y destino.
+
+
+
+
+
+
+
+
 
