@@ -5,4 +5,8 @@
     nuevas columnas que se derivan de las columnas existentes, select() cambia que columnas estan presentes,
     rename() cambia el nombre de las columnas y relocate() cambia las posiciones de las columnas.
 
+    3.3.1 mutate()
+
+        El trabajo de mutate() es agregar nuevas columnas que se calculan con las columnas ya existentes.
+
 
