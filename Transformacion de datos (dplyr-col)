@@ -7,6 +7,141 @@
 
     3.3.1 mutate()
 
-        El trabajo de mutate() es agregar nuevas columnas que se calculan con las columnas ya existentes.
+        El trabajo de mutate() es agregar nuevas columnas que se calculan con las columnas ya existentes. Existen 
+        multiples funciones que podemos emplear, por ahora solo ocuparemos algebra basica, para ejemplificar el 
+        uso de la funcion mutate().
 
 
+
+
+        Ejercicio: Queremos saber el tiempo de un vuelo retrasado permanecio en el aire.
+
+        > flights |>
+        + mutate(
+        + retraso = dep_time - arr_time,
+        + velocidad = distance / air_time * 60)
+
+
+# A tibble: 336,776 × 21
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time arr_delay carrier flight tailnum origin dest  air_time distance  hour
+   <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>     <dbl> <chr>    <int> <chr>   <chr>  <chr>    <dbl>    <dbl> <dbl>
+ 1  2013     1     1      517            515         2      830            819        11 UA        1545 N14228  EWR    IAH        227     1400     5
+ 2  2013     1     1      533            529         4      850            830        20 UA        1714 N24211  LGA    IAH        227     1416     5
+ 3  2013     1     1      542            540         2      923            850        33 AA        1141 N619AA  JFK    MIA        160     1089     5
+ 4  2013     1     1      544            545        -1     1004           1022       -18 B6         725 N804JB  JFK    BQN        183     1576     5
+ 5  2013     1     1      554            600        -6      812            837       -25 DL         461 N668DN  LGA    ATL        116      762     6
+ 6  2013     1     1      554            558        -4      740            728        12 UA        1696 N39463  EWR    ORD        150      719     5
+ 7  2013     1     1      555            600        -5      913            854        19 B6         507 N516JB  EWR    FLL        158     1065     6
+ 8  2013     1     1      557            600        -3      709            723       -14 EV        5708 N829AS  LGA    IAD         53      229     6
+ 9  2013     1     1      557            600        -3      838            846        -8 B6          79 N593JB  JFK    MCO        140      944     6
+10  2013     1     1      558            600        -2      753            745         8 AA         301 N3ALAA  LGA    ORD        138      733     6
+# ℹ 336,766 more rows
+# ℹ 4 more variables: minute <dbl>, time_hour <dttm>, retraso <int>, velocidad <dbl>
+# ℹ Use `print(n = ...)` to see more rows
+
+    Nota: observemos que no nos proporciona informaciona simple vista, se debe a que mutate() agrega nuevos campos en el lado derecho
+    de su conjunto de datos, lo que dificulta ver lo que sucede. Podemos usar un argumento para visualizar estos campos en el lado 
+    izquierdo.
+
+
+
+
+    Ejercicio: queremos que estos campos aparezcan en el lado izquierdo.
+
+    > flights |>
++ mutate(
++ retraso = dep_time - arr_time,
++ velocidad = distance / air_time * 60,
++ .before = 1)
+
+
+# A tibble: 336,776 × 21
+   retraso velocidad  year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time arr_delay carrier flight tailnum origin dest  air_time distance  hour minute
+     <int>     <dbl> <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>     <dbl> <chr>    <int> <chr>   <chr>  <chr>    <dbl>    <dbl> <dbl>  <dbl>
+ 1    -313      370.  2013     1     1      517            515         2      830            819        11 UA        1545 N14228  EWR    IAH        227     1400     5     15
+ 2    -317      374.  2013     1     1      533            529         4      850            830        20 UA        1714 N24211  LGA    IAH        227     1416     5     29
+ 3    -381      408.  2013     1     1      542            540         2      923            850        33 AA        1141 N619AA  JFK    MIA        160     1089     5     40
+ 4    -460      517.  2013     1     1      544            545        -1     1004           1022       -18 B6         725 N804JB  JFK    BQN        183     1576     5     45
+ 5    -258      394.  2013     1     1      554            600        -6      812            837       -25 DL         461 N668DN  LGA    ATL        116      762     6      0
+ 6    -186      288.  2013     1     1      554            558        -4      740            728        12 UA        1696 N39463  EWR    ORD        150      719     5     58
+ 7    -358      404.  2013     1     1      555            600        -5      913            854        19 B6         507 N516JB  EWR    FLL        158     1065     6      0
+ 8    -152      259.  2013     1     1      557            600        -3      709            723       -14 EV        5708 N829AS  LGA    IAD         53      229     6      0
+ 9    -281      405.  2013     1     1      557            600        -3      838            846        -8 B6          79 N593JB  JFK    MCO        140      944     6      0
+10    -195      319.  2013     1     1      558            600        -2      753            745         8 AA         301 N3ALAA  LGA    ORD        138      733     6      0
+# ℹ 336,766 more rows
+# ℹ 1 more variable: time_hour <dttm>
+# ℹ Use `print(n = ...)` to see more rows
+
+
+    Nota: el . (punto) indica en el argumento que es un parametro de la funcion mutate(), no una nueva columna.
+
+
+    .after : podemos usar el argumento ".after" para agregar la columna despues de una columna indicada.
+
+
+    Ejercicio: queremos crear dos campos uno llamado "retraso" y otro llamado "velocidad" despues del campo "day"
+
+
+    > flights |>
++ mutate(
++ retraso = dep_time - arr_time,
++ velocidad = distance / air_time * 60,
++ .after = day)   #indica que los campos se creen despues de el campo "day"
+
+
+
+# A tibble: 336,776 × 21
+    year month   day retraso velocidad dep_time sched_dep_time dep_delay arr_time sched_arr_time arr_delay carrier flight tailnum origin dest  air_time
+   <int> <int> <int>   <int>     <dbl>    <int>          <int>     <dbl>    <int>          <int>     <dbl> <chr>    <int> <chr>   <chr>  <chr>    <dbl>
+ 1  2013     1     1    -313      370.      517            515         2      830            819        11 UA        1545 N14228  EWR    IAH        227
+ 2  2013     1     1    -317      374.      533            529         4      850            830        20 UA        1714 N24211  LGA    IAH        227
+ 3  2013     1     1    -381      408.      542            540         2      923            850        33 AA        1141 N619AA  JFK    MIA        160
+ 4  2013     1     1    -460      517.      544            545        -1     1004           1022       -18 B6         725 N804JB  JFK    BQN        183
+ 5  2013     1     1    -258      394.      554            600        -6      812            837       -25 DL         461 N668DN  LGA    ATL        116
+ 6  2013     1     1    -186      288.      554            558        -4      740            728        12 UA        1696 N39463  EWR    ORD        150
+ 7  2013     1     1    -358      404.      555            600        -5      913            854        19 B6         507 N516JB  EWR    FLL        158
+ 8  2013     1     1    -152      259.      557            600        -3      709            723       -14 EV        5708 N829AS  LGA    IAD         53
+ 9  2013     1     1    -281      405.      557            600        -3      838            846        -8 B6          79 N593JB  JFK    MCO        140
+10  2013     1     1    -195      319.      558            600        -2      753            745         8 AA         301 N3ALAA  LGA    ORD        138
+# ℹ 336,766 more rows
+# ℹ 4 more variables: distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dttm>
+# ℹ Use `print(n = ...)` to see more rows
+
+
+
+    .keep : el argumento keep nos permite indicar que columnas queremos que se mantengan.
+
+    Ejercicio: solo mantener las columnas involucradas en la funcion de mutate()
+
+
+    > flights |>
++ mutate(
++ retraso = dep_time - arr_time,
++ velocidad = distance / air_time * 60,
++ horas = air_time / 60,
++ retraso_horas = retraso / hour,
++ .keep = "used")
+
+
+# A tibble: 336,776 × 9
+   dep_time arr_time air_time distance  hour retraso velocidad horas retraso_horas
+      <int>    <int>    <dbl>    <dbl> <dbl>   <int>     <dbl> <dbl>         <dbl>
+ 1      517      830      227     1400     5    -313      370. 3.78          -62.6
+ 2      533      850      227     1416     5    -317      374. 3.78          -63.4
+ 3      542      923      160     1089     5    -381      408. 2.67          -76.2
+ 4      544     1004      183     1576     5    -460      517. 3.05          -92  
+ 5      554      812      116      762     6    -258      394. 1.93          -43  
+ 6      554      740      150      719     5    -186      288. 2.5           -37.2
+ 7      555      913      158     1065     6    -358      404. 2.63          -59.7
+ 8      557      709       53      229     6    -152      259. 0.883         -25.3
+ 9      557      838      140      944     6    -281      405. 2.33          -46.8
+10      558      753      138      733     6    -195      319. 2.3           -32.5
+# ℹ 336,766 more rows
+# ℹ Use `print(n = ...)` to see more rows
+
+
+
+
+    3.3.2 SELECT()
+
+        
