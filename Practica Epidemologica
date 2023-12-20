@@ -32,6 +32,31 @@
   > cleaning_dict <- import("https://github.com/appliedepi/epirhandbook_eng/raw/master/data/case_linelists/cleaning_dict.csv")
   Lo estamos guardando en una variable de tipo 
 
+  Este solo es un diccionario de limpieza que contiene:
+
+  > cleaning_dict <- import("https://github.com/appliedepi/epirhandbook_eng/raw/master/data/case_linelists/cleaning_dict.csv")
+  > 
+  > glimpse(cleaning_dict)
+  Rows: 9
+  Columns: 3
+  $ from <chr> "yes", "no", "dth", "mort", "femme", "f", "m", "Port hospital", "funeraille"
+  $ to   <chr> "1", "0", "death", "death", "F", "F", "M", "Port Hospital", "funeral"
+  $ col  <chr> ".global", ".global", "outcome", "outcome", "gender", "gender", "gender", "hospital", "source"
+
+
+4. Un archivo .rds es un tipo de archivo especifico de R que conserva los tipos de columnas. Esto asegura que solo 
+  tenemos que hacer una limpieza minima despues de importar los datos a R.
+
+  Si tenemos un archivo.rds lo podemos cargar en R mediante la funcion readRDS("Path")
+
+> malaria_facility_count_data <- readRDS("C:/RStudio/Repositorio/malaria_facility_count_data.rds")
+
+
+5. Datos en escala Likert, podemos descargar los datos mediante el packages "rio" con la funcion importar.
+  Se trata de una encuesta tipo Likert, utilizada en la escala sobre piramides
+
+  
+
   
 
   
