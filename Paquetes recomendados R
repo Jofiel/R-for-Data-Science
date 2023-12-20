@@ -118,3 +118,31 @@ pacman::p_load(
      treeio            # visualización de archivos filogenéticos
  
 )
+
+
+     1. Packages: paquete "pacman"
+
+          install.packages("pacman") el paquete "pacman" contiene la funcion p_load() que instala paquete si es 
+          enecesario y lo carga para utilizarlo en la sesion actual de R. Manualmente lo podemos hacer con la
+          funcion liberty(nom_paquete).
+
+     
+     2. Estilo de escritura:
+
+          Es mas sencillo comentar codigo de manera vertical, utilizando sangrias ademas es mas facil leer el codigo:
+
+     linelist %>% 
+     group_by(hospital) %>%  # filas agrupadas por hospital
+     slice_max(date, n = 1, with_ties = F) # si hay un empate (de fecha), tomar la primera fila
+
+
+     linelist %>% 
+     group_by(hospital) %>% # filas agrupadas por hospital
+     slice_max(
+          date,                # mantener la fila por grupo con el valor máximo de la fecha 
+          n = 1,               # mantener sólo la fila más alta
+          with_ties = F)       # si hay un empate (de fecha), tomar la primera fila
+
+
+
+
