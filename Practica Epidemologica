@@ -20,7 +20,17 @@
   La funcion epirhandbook::get_data() la ejecutamos para descargar todos los ejemplos en nuestro ordenador. Sugerimos crear una carpeta ya que son mas de 
   30 files que se descargaran en tu ordenador. 
 
-  >get_data("all")  #descarga todos los datos de ejemplo en la computadora.
+  >get_data("all")  # descarga todos los datos de ejemplo en la computadora.
+
+3. Para importar archivos, debemos instalar el packages "rio" lo podemos hacer usando pacman, para que lo instale y lo carge en la
+  sesion actual:
+
+  > pacman::p_load(rio) # instalar y cargar el paquete "rio"
+
+  Lo podemos cargar directamente a R con el comando:
+
+  > cleaning_dict <- import("https://github.com/appliedepi/epirhandbook_eng/raw/master/data/case_linelists/cleaning_dict.csv")
+  Lo estamos guardando en una variable de tipo 
 
   
 
