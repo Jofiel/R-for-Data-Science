@@ -3,34 +3,38 @@
   >install.packages("pacman")
   >library(pacman)
 
-2. Instalando paquete R de trabajo llamado "epirhandbook". Este incluye la funcion "download_book()" que descarga el archivo manual desde el reporsitorio
-  de Github. Este paquete no esta en el CRAN (Comprehensive R Archive Network/ Red Integral de Archivos de R) asi que necesitamos usar la funcion especial
+2. Instalando paquete R de trabajo llamado "epirhandbook". Este incluye la funcion "download_book()" que descarga el archivo manual       
+  desde   el reporsitorio de Github. Este paquete no esta en el CRAN (Comprehensive R Archive Network/ Red Integral de Archivos de R) asi que necesitamos usar la funcion especial
+
   p_install_gh("appliedepi/epirhandbook") una funcion del paquete "pacman"
 
-  pacman::p_install_gh("appliedepi/epirhandbook")
+  >pacman::p_install_gh("appliedepi/epirhandbook")
 
   Y podemos cargarlo usando "pacman" para usarlo en la sesion actual:
 
-  pacman::p_load(epirhandbook)
+  >pacman::p_load(epirhandbook)
 
   Acontinuacion ejecutamos la funcion del paquete "download_book()" para descargar el manual en el ordenador:
 
   > epirhandbook::download_book()  #Esta linea descarga el libro donde nosotros lo indiquemos.
 
-  La funcion epirhandbook::get_data() la ejecutamos para descargar todos los ejemplos en nuestro ordenador. Sugerimos crear una carpeta ya que son mas de 
-  30 files que se descargaran en tu ordenador. 
+  La funcion epirhandbook::get_data("all") la ejecutamos para descargar todos los ejemplos en nuestro ordenador. 
+  Sugerimos crear una carpeta ya que son mas de 70 files que se descargaran en tu ordenador. 
 
-  >get_data("all")  # descarga todos los datos de ejemplo en la computadora.
+  >epirhandbook::get_data("all")  # descarga todos los datos de ejemplo en la computadora.
 
-3. Para importar archivos, debemos instalar el packages "rio" lo podemos hacer usando pacman, para que lo instale y lo carge en la
-  sesion actual:
+3. Para importar archivos, debemos instalar el packages "rio" lo podemos hacer usando pacman, 
+  para que lo instale y lo carge en la sesion actual:
 
   > pacman::p_load(rio) # instalar y cargar el paquete "rio"
 
-  Lo podemos cargar directamente a R con el comando:
+  Con el packages "rio" podemos hacer uso de la funcion "import" con esta funcion podemos importar data desde GitHub por ejemplo:
 
-  > cleaning_dict <- import("https://github.com/appliedepi/epirhandbook_eng/raw/master/data/case_linelists/cleaning_dict.csv")
-  Lo estamos guardando en una variable de tipo 
+  > cleaning <- import("https://github.com/appliedepi/epirhandbook_eng/raw/master/data/case_linelists/cleaning_dict.csv")
+ 
+  Estamos guardando la data en una variable llamada "cleaning", la podemos visualizar con el comando:
+
+  >glimpse(cleaning) # A saber que glimpse es una funcion de el packages "tidyserse"
 
   Este solo es un diccionario de limpieza que contiene:
 
@@ -53,7 +57,32 @@
 
 
 5. Datos en escala Likert, podemos descargar los datos mediante el packages "rio" con la funcion importar.
-  Se trata de una encuesta tipo Likert, utilizada en la escala sobre piramides
+  Se trata de una encuesta tipo Likert, utilizada en la escala sobre piramides de poblacion y escalas de 
+  Likert. Este archivo se encuentra en los archivos que hemos descargado en la carpeta de "Libros" lo podemos
+  cargar con el packages "rio" de la siguiente manera:
+
+  > likert_data <- read.csv("C:/Users/Jofiel/Documents/R for Data Cience/Libros/likert_data.csv")
+
+  > glimpse(likert_data)
+
+Rows: 38
+Columns: 9
+$ status <chr> "Senior", "Junior", "Intermediate", "Intermediate", "Senior", "Junior", "Senior", "Senior", "Senior", "Senior", "Senior", "Junior", "Senior", "Junior", "…
+$ Q1     <chr> "Very Good", "Very Good", "Good", "Good", "Very Good", "Good", "Very Good", "Good", "Good", "Good", "Good", "Good", "Good", "Good", "Very Good", "Good", …
+$ Q2     <chr> "Very Good", "Very Good", "Good", "Poor", "Very Poor", "Very Good", "Very Good", "Good", "Very Good", "Very Good", "Very Good", "Very Good", "Good", "Ver…
+$ Q3     <chr> "Good", "Very Good", "Good", "Poor", "Good", "Good", "Very Good", "Very Good", "Very Good", "Good", "Very Good", "Very Good", "Poor", "Good", "Good", "Go…
+$ Q4     <chr> "Very Poor", "Very Good", "Very Good", "Very Poor", "Poor", "Very Poor", "", "Very Good", "Very Poor", "Very Poor", "Very Poor", "Good", "Very Poor", "Ve…
+$ Q5     <chr> "Not applicable", "Very Good", "Not applicable", "Not applicable", "Poor", "Not applicable", "", "Poor", "Not applicable", "Poor", "Not applicable", "Goo…
+$ Q6     <chr> "Not applicable", "Very Good", "Not applicable", "Not applicable", "Very Poor", "Not applicable", "", "Not applicable", "Not applicable", "Not applicable…
+$ Q7     <chr> "Very Good", "Very Good", "Good", "Good", "Good", "Good", "", "Very Good", "Not applicable", "Very Good", "Good", "Good", "Poor", "Good", "Good", "Poor",…
+$ Q8     <chr> "Very Good", "Very Good", "Good", "Good", "Good", "Good", "Very Good", "Very Good", "Good", "Very Good", "Good", "Very Good", "Good", "Very Good", "Good"…
+
+
+6. POR QUE UTILIZAR R?
+
+    Como se indica en la pagina web de R project
+
+
 
   
 
