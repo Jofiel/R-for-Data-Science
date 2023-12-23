@@ -80,7 +80,135 @@ $ Q8     <chr> "Very Good", "Very Good", "Good", "Good", "Good", "Good", "Very G
 
 6. POR QUE UTILIZAR R?
 
-    Como se indica en la pagina web de R project
+    Como se indica en la pagina web de R project este es un lenguaje de programacion y un entorno para la computacion estadistica y graficos. Es muy versatil, ampliable y dirigido a la comunidad.
+
+    -Coste: 
+
+    El uso de R es gratuito. Hay una fuerte etica de la comunidad de mantener el codigo abierto.
+
+    -Reproducibilidad:
+
+    La gestion y el analisis de los datos a traves de un lenguaje de programacion (en comparacion de Excel) mejora la reproducibilidad,
+    facilita la detencion de errores y alivia la carga de trabajo.
+
+
+    -Comunidad:
+
+    La comunidad de usuarios de R es enorme y colaborativa. Cada dia se desarrollan nuevos packages y herramientas para abordar problemas
+    cotidianos.
+
+
+    -Terminos clave:
+
+    RStudio: es una interfaz grafica de usuario (GUI) para facilitar el uso de R.
+
+    Objetos: todo lo que se almacena en R - conjuntos de datos, variables, una lista de pueblos, un numero total de poblacion incluso 
+    graficos - son OBJETOS a los que se le asigna un nombre y pueden ser diferenciados en comandos posteriores.
+
+    Funciones:  es una operacion de codigo que acepta entradas y devuelve una salida transformada.
+
+    Paquetes:  es un conjunto de funciones que se pueden compartir.
+
+    Scripts: es un archivo que contiene una serie de comandos. 
+
+
+    -RStudio: 
+
+    es una interfaz de usuario (GUI) para facilitar el uso de R. Puedes pensar a R como el motor de un vehiculo, que hace el trabajo 
+    crucial y RStudio es la carroceria del vehiculo.
+
+    
+    RStudio muestra cuatro paneles rectangulares.
+
+    1. EL panel principal (Source Pane):
+
+      Este panel en la parte superior izquierda, es un espacio para editar, ejecutar y guardar tus scripts. Los scripts contionen los
+      comandos que deseamos ejecutar. Este panel tambien puede mostrar conjuntos de datos (data frames) para su visualizacion.
+
+    2. El panel de consola (R Console Pane):
+
+      La consola de R es el hogar del "motor" de R es, por defecto, el panel inferior izquierdo en RStudio. Aqui es donde se ejecutan
+      realmente los comandos y aparecen las salidas no graficas y los mensajes de error/advertencia. Podemos introducir y ejecutar directamente los comandos en la consola de R, pero ten en cuenta que estos comandos no se guardan como cuando se ejecutan los 
+      comandos desde un script.
+
+    3. El panel de entorno (Environment Pane):
+
+      Este panel por defecto se ubica en la parte superior derecha, se utiliza mas a menudo para ver breves resumenes de los objetos en el entorno R en la sesion actual. Estos objetos pueden incluir conjuntos de datos importados, modificados o creados, parametros que
+      hayas definido (ejemplo: una semana especifica para el analisis), o vectores o listas que hayas definido durante el analisis. Podemos hacer click en la flecha situada junto al nombre de un dataframe oara ver sus variables.
+
+      Este panel tambien contiene History donde puedes ver los comandos ejecutados anteriormente. Tambien contiene una pestaña "tutorial"
+      donde podemos completar tutoriales interactivos de R si tienes el paquete "learnr" instalado. Tambien tiene una pestaña de "conexiones" para las conexiones externas y puede tener un panel "Git" si deseas interactual con Github.
+      
+    4. Panel de archivos (Files Pane):
+
+      Panel de files, plots, packages, help y viewer, este panel esta ubicado en la parte inferir derecha incluye varias pestañas importantes. La pestaña File (Archivos) permite navegar por las carpetas y puede utilizarse para abrir o eliminar archivos. En la pestaña Plots (Graficos), se mostrara todos los graficos, incluyendo los mapas. Las salidas interactivas o HTML se mostraran en la pestaña Viewer (Visor). El panel Packages (Paquetes), permite ver, instalar, actualizar, eliminar cargar/descargar paquetes de R y ver que version del paquete tienes. Por ultimo el panel de ayuda (Help) se mostrara la documentacion y los archivos de ayuda.
+
+
+    -Algunos atajos de teclado utiles:
+
+
+      Ctrl + s --> guardar script
+      Ctrl + enter --> ejecutar las lines de comando actuales
+      Ctrl + Shift + c --> nos ayuda a comentar/descomentar las lineas resaltadas (bastante bueno)
+      Ctrl + Shift + m --> inserta el operador %>%
+      Ctrl + l --> limpia la consola de R
+      Ctrl + alt + b --> ejecuta en "Source Pane" todo el codigo desde el inicio hasta el final.
+      Ctrl + alt + t --> ejecuta la seccion de codigo actual (R Markdown)
+      Ctrl + alt + i --> inserta un trozo (chunk) de codigo (R Markdown)
+      Las flechas de arriba/abajo en "Console Pane" recorre los comandos ejecutados recientemente.
+      Ctrl + f --> habilita en la barra de herramientas buscar y reeemplazar.
+      Ctrl + Shift + f --> buscar y reemplazar en muchos archivos.
+      Tab --> cuando escribimos utiliza la funcion de autocompletar de RStudio. Esto puede evitar errores ortograficos.
+      Ctrl + (flecha arriba) --> este atajos nos proporciona el historico en el "Console Pane"
+
+
+    
+    -FUNCIONES:
+
+      Las funciones son la forma de realizar tareas y operaciones. Muchas vienen instaladas en R, mientras que otras estan disponibles para su descarga en packages.
+
+      Las funciones se escriben en codigo-texto con parentesis abiertos, asi: filter(). Las funciones se descargan dentro de los paquetes. A veces en el codigo de ejemplo puede ver el nombre de la funcion vinculado explicitamente al nombre de su paquete con dos puntos (::) como dplyr::filter() .El proposito de esta vinculacion se explica en la seccion de paquetes.
+
+      Funciones simples:
+
+      Una funcion es como una maquina que recibe entradas, realiza alguna accion con esas entradas y produce una salida.
+      Las funciones sulen operar sobre algun objeto colocado dentro de los parentesis de la funcion.
+
+      Ejmplo: sqrt(49) --> aplica la funcion raiz cuadrada al objeto 49.
+
+      Dado que R puede almacenar multiples conjuntos de datos, se tiene que especificar tanto el set de datos como la columna. Una forma de hacerlo es utilizar la notacion $ para vincular el nombre de lo datos y el nombre de la columna (dataset$column) 
+      
+      Ejemplo:
+      En el siguiente ejemplo la funcion summary() se aplica a la columna numerica "age" en los datos "linelist" y la salida es un resumen de los valores numericos y faltantes de la columna.
+
+  # Muestra estadisticas resumen de la columna "age" del dataset "linelist"
+  >summary(linelist$age)
+
+      Una funcion representa un codigo complejo que ha sido envuelto para el usuario en un comando sencillo.
+
+      
+      FUNCIONES CON MULTIPLES ARGUMENTOS:
+
+      Las funciones suelen pedir varias entradas, llamadas argumentos, situadas dentro del parentesis de la funcion, normalmente separadas por comas.
+
+      -Algunos argumentos son necesarios para que la funcion funcione correctamente otros son opcionales.
+      
+      -Los argumentos opcionales tienen una configuracion por defecto.
+
+      -Los argumentos pueden tomar caracteres, valores logicos (true/false) y otras entradas.
+
+
+      
+      Ejemplo:
+
+      bread <- oven_bake(dough, minutes = 45, temperature = 165)
+
+      Aqui una divertida funcion ficticia, llamada "over_bake()" Toma un objeto de entrada ("input"), por ejemplo una base de datos, en este ejemplo dough (masa), y realiza operaciones en el segun lo especificado por los argumentos adicionales (minutes = ) y (temperature = ). La salida ("output") puede ir a la consola. o almacenarse como un "objeto" utilizando el operador de asignacion "<-"
+
+
+      
+
+
 
 
 
