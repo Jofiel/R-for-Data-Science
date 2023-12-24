@@ -206,17 +206,18 @@ $ Q8     <chr> "Very Good", "Very Good", "Good", "Good", "Good", "Good", "Very G
       Aqui una divertida funcion ficticia, llamada "over_bake()" Toma un objeto de entrada ("input"), por ejemplo una base de datos, en este ejemplo dough (masa), y realiza operaciones en el segun lo especificado por los argumentos adicionales (minutes = ) y (temperature = ). La salida ("output") puede ir a la consola. o almacenarse como un "objeto" utilizando el operador de asignacion "<-"
 
 
+      Ejemplos: 
+
+      Un ejemplo mas realista, el comando age_pyramid() que aparece reproduce una piramide de edad basado en grupo de edad definidos. La funcion recibe tres argumentos dentro de los parentesis, separado por comas. La datafreame linelist, utiliza el argumento "age_cat5" como la columna a contar, y "gender" como la columna binaria a utilizar para dividir la piramide por color segun su genero.
+
+
       
+      BUSCAR UN PACKAGES DADA UNA FUNCION:
 
+      Lo puedes hacer con la funcion "findFn()" esta funcion se encuentra en el packages "sos"
 
+      >install.packages("sos")
+      >library(sos)
+      findFn("age_pyramid")
 
-
-
-  
-
-  
-
-  
-
-  
-
+      
