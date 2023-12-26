@@ -210,6 +210,46 @@ $ Q8     <chr> "Very Good", "Very Good", "Good", "Good", "Good", "Good", "Very G
 
       Un ejemplo mas realista, el comando age_pyramid() que aparece reproduce una piramide de edad basado en grupo de edad definidos. La funcion recibe tres argumentos dentro de los parentesis, separado por comas. La datafreame linelist, utiliza el argumento "age_cat5" como la columna a contar, y "gender" como la columna binaria a utilizar para dividir la piramide por color segun su genero.
 
+  # Crear una piramide de edad 
+  > age_pyramid(data=linelist, age_group="age_cat5", split_by="gender")
+
+      Es una buena practica escribir nuestro codigo por linea para poder comentar. Este estilo puede ser mas facil de leer y mas facil de escribir "comentarios" con # para explicar cada linea del codigo (comentar nuestro codigo es cosiderado una buena practica).
+
+  # Crear una piramide de edad
+  > age_pyramid(
+    data = linelist,  # usar los datos de linelist
+    age_group = "age_cat5",   # especifica la columna para los grupos de edad
+    split_by = "gender"   # usa la columna gender para los datos de la piramide
+    )
+
+    Ojo: no es necesario especificar el argumento (por ejemplo data =) si sus argumentos se escriben en su orden especifico, especificados en la documentacion de la funcion. El codigo siguiente produce exactamente la misma piramide.
+
+  # Este codigo produce exactamente el mismo grafico
+  > age_pyramid(linelist, "age_cat5", "gender")
+
+    #EL ARGUMRNTO age_pyramid() mas complejo podria incluir argumentos opcionales.
+
+  >age_pyramid(
+    linelist,   # usamos la data line list
+    "age_cat5",   # columna de los grupos de edad
+    "gender",   # dividido por genero
+    proporcional=TRUE,    # porcentajes en vez de numeros absolutos
+    pal= c("orange","purple")   # colores
+    )
+
+    R es un lenguaje orientado a funciones, por lo que sentirnos orientados y cacitados para escribir tus propias funciones porta varias funciones:
+
+      1. Facilita la programacion modular, i.e., separar el codigo en partes independientes y manejables.
+
+      2. Sustituye el repetitivo copiar y pegar, que puede dar lugar a errores
+
+      3. Se puede dar a las piezas de codigo nombres faciles de recordar
+
+    Ojo: en el apartado "44 escribir funciones/Micelanea" se trata a profundidad como escribir funciones 
+
+  
+
+
 
       
       BUSCAR UN PACKAGES DADA UNA FUNCION:
