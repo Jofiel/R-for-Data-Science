@@ -247,12 +247,9 @@ $ Q8     <chr> "Very Good", "Very Good", "Good", "Good", "Good", "Good", "Very G
 
     Ojo: en el apartado "44 escribir funciones/Micelanea" se trata a profundidad como escribir funciones 
 
-  
-
-
-
-      
-      BUSCAR UN PACKAGES DADA UNA FUNCION:
+        
+    
+    BUSCAR UN PACKAGES DADA UNA FUNCION:
 
       Lo puedes hacer con la funcion "findFn()" esta funcion se encuentra en el packages "sos"
 
@@ -261,3 +258,68 @@ $ Q8     <chr> "Very Good", "Very Good", "Good", "Good", "Good", "Good", "Very G
       findFn("age_pyramid")
 
       
+  3.7 PAQUETES (PACKAGES):
+
+    Los paquetes contienen funciones. Son un conjunto de codigo y documentacion que se pueden compartir y que contienen funciones predefinidas. Los usuarios de la comunidad R desarrollan paquetes todo el tiempo atendiendo a problemas especificos. Es problable que aguno pueda ayudarte en tu trabajo!
+
+    En la instalacion, R contiene paquetes "base" y funciones que realizan tareas elementales comunes.
+
+    
+    INSTALAR Y CARGAR
+
+    Las funciones estan contenidas en paquetes que pueden descargarse ("instalarse") desde inernet. Una vez descargado el paquete, se almacena en tu libreria. Puedes acceder a las funciones que contiene durante una sesion en R cargando el paquete.
+
+> "Piensa en R como tu libreria personal" Cuando se descarga un paquete, tu libreria adquiere un nuevo libro de funciones, pero cada   vez que quieras utilizar una funcion de ese libro, debes tomar prestado ("cargar") ese libro en tu libreria.
+
+    -En resumen: para usar las funciones disponibles en un paquete de R, hay que realizar dos pasos:
+
+    1. El paquete debe ser instalado
+    2. El paquete debe ser cargado (cada sesion en R)
+
+
+    TU LIBRERIA:
+
+    es en realidad es una carpeta en tu ordenador, que contiene una carpeta para cada paquete que se ha instalado. Averigua donde esta instalado R en tu ordenador, si es windows, busca una carpeta llamada "win-library"
+
+    INSTALAR DESDE CRAN:
+
+    Lo habitual es que los usuarios descarguen packages desde el CRAN. CRAN (Comprehensive R Archive Network) es un almacen publico online de paquetes de R que han sido publicados por los miembros de la comunidad R.
+
+    
+    COMO INSTALAR Y CARGAR:
+
+    En este manual sugerimos utilizar el paquete "pacman" (abreviatura de "packages manager"). Ofrece una interesante funcion "p_load()" que instala un paquete si es necesario y lo carga para su uso en la sesion actual de R. 
+
+    EJEMPLO: uso de p_load()
+
+    Solo hay que listar los nombres de los paquetes dentro de los parentesis de p_load() separado por comas. Ten en cuenta que la funcion es sensible entre mayusculas y minusculas. p_load() es conveniente y conciso si se comparten scripts con otros.
+
+# instala (si es necesario) y carga los paquetes a utilizar 
+> pacman::p_load(rio, tidyverse, here)
+
+    Nota: hemos utilizado la sintaxis "pacman::p_load()" que escribe explicitamente el nombre del paquete "pacman" antes del nombre de la funcion "p_load()" conectado por dos puntos "::" esta sintaxis es util porque tambien carga el packages "pacman" (suponiendo que tambien este instalado).
+
+    La funcion base alternativa que veremos a menudo. Para instalar un paquete es "install.packages()" El nombre del paquete a instalar debe proporcionarse entre comillas dentro de los parentesis. Si deseamos instalar varios paquetes en un solo comando, deben ser listados dentro de un vector de caracteres c()
+
+# instalar un solo paquete
+> install.packages("tidyverse") 
+
+# instalar multiples paquetes con R base
+> install.packages(c("tidyverse","rio","here"))
+
+    La funcion base para cargar un paquete (despues de haberlo instalado) es "library()" Solo puedes cargar un paquete a la vez (otra razon para usar p_load()). Se puede escribir el nombre del paquete con o sin comillas. 
+
+# carga los paquetes para usarlos con R base
+
+>library(tidyverse)
+>library(here)
+>library(rio)
+
+    Para comprobar si un paquete esta instalado y/o cargado, puedes mirar en la pestaña de packages de RStudio. Si el paquete esta instalado, se muestra con el numero de version, si la casilla esta marcada, esta cargado para la sesion actual.
+
+
+    INSTALAR PACKAGES DESDE GITHUB:
+
+
+    A veces, necesitas instalar un paquete que aun no esta disponible en CRAN. O tal ve
+    
