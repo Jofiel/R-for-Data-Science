@@ -481,7 +481,19 @@ $Imports
 
       Instalamos el paquete "tinytex"
 
->pacman::p_load(tinytex)
+#instala el paquete tinytex
+>pacman::p_load(tinytex)   
+
+#Comando de R para instalar el software de Tinytex
 >tinytex::install_tinytex()
 
-      
+    
+    
+    40.2 COMO COMENZAR:
+
+      Instalemos el paquete rmarkdown. 
+
+> pacman::p_load(rmarkdown)
+
+      Iniciamos un Rmd
+      En RStudio. abrir un nuevo Rmd, comenzamos con File -> New file -> R markdown
