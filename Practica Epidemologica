@@ -497,3 +497,49 @@ $Imports
 
       Iniciamos un Rmd
       En RStudio. abrir un nuevo Rmd, comenzamos con File -> New file -> R markdown
+
+
+      RStudio te dara algunas opciones de salida para elegir. Si el tipo de documento de salida que deseamos no es uno de los que elegimos, podemos elegir cualquiera y cambiarlo en el script mas tarde.
+
+      Esto abrira un nuevo script .Rmd 
+
+
+      El directorio de trabajo:
+      Es el lugar donde se guardara el propio archivo Rmd.
+
+    40.3 COMPONENTES DE R MARKDOWN:
+
+      Un documento Rmd puede ser editado en RStudio igual que un script estandar de R. Cuando se inicia un nuevo script de R Markdown, RStudio intenta ayudarnos mostrando una plantilla que explica las diferentes secciones de un script de R Markdown.
+
+      Lo que vemos es lo que aparece al iniciar un script en Rmd destinado a producir un documento de salida en html (nuestro-ejemplo)
+      
+      1. Metadatos YAML:
+        Denominado "metadatos YAMML" o simplemente "YAML" se encuentra en la parte superior del documento R Markdown. Esta seccion del script le dira a su archivo Rmd que tipo de salida producir, preferencias de formato y otros metadatos como el titulo del documento, el autor y la fecha. Ten en cuenta que la sangria es importante, los tabuladores no se aceptan pero los espacios si.
+
+        Esta seccion debe comenzar con una linea que tenga solo tres guiones --- y debe cerrar con una linea que tenga solo tres guiones --- Los parametros YAML vienen en pares "key:value". La colocacion de los dos puntos en TAML es importante.
+
+        El YAML debe comenzar con los metadatos del documento. El orden de estos parametros YAML primarios no importa, por ejemplo:
+
+---
+title: "My document"
+author: "Me"
+date: "2023-12-27"
+output: html_document
+---
+
+        En output, podemos cambiar el tipo de salida, por: powerpoint_presentation o word_document o pdf_document.
+
+
+      -Formato de texto: rodea el texto normal con estos caracteres para cambiar su apariencia:
+
+      -Guiones bajos/un asterisco simple (_texto_) o (*texto*) para poner en cursiva (italica)
+      -Doble asterisco (**texto**) para el texto en negrita
+      -Comilla invertida para mostrar el texto como codigo.
+
+      
+      -Titulos y encabezados
+
+        
+
+
+
