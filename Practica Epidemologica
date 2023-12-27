@@ -479,3 +479,4 @@ $Imports
 
       TinyTeX: es la version ligera de LaTeX para R que ha hecho Yihui Xie. MikTeX es la version de LaTeX completa para ordenador, pero requiere cierta paciencia y un aprendizaje que no todo el mundo es capaz de sacrificar, es de instalacion complicada. Si solo utilizas LaTeX desde R, la mejor opcion es usar la version ligera de R, que se puede instalar desde el mismo entorno de RStudio.
 
+      Instalamos
