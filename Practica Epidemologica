@@ -450,4 +450,32 @@ $Imports
 
       R Markdown es una herramienta ampliamente utilizada para crear documentos de salida automatizados, repoducibles para compartir, ejemplo, informes. Podemos generar resultados estaticos o interactivos en word, pdf, html, powerpoint etc.
 
+      Un Script de R Markdown intercala codigo R y texto de tal manera que el script se convierte en tu documento de salida. Puedes crear un documento completo con formato, incluyendo texto narrativo, tablas, figuras, numeros, bibliografias, ect.
+
+      Estos documentos pueden producirse para ser actualizados de forma rutinaria, informes diarios, ejecutables sobre subconjuntos de datos. 
+
+    40.1 Preparacion:
+
+      -Markdown: es un "lenguaje" que permite escribir un documento en texto plano, que se puede convertir en html y otros formatos. No es especifico de R. Los archivos escritos en Markdown tienen una extension ".md"
+
+      -R Markdown: es una variacion de markdown que es especifica de R, te permite escribir un documento usando markdown para producir texto y para integrar codigo R y mostrar sus resultados. Los archivos R Markdown tienen una extension ".Rmd"
+
+      -rmarkdown -el paquete: usado por R para convertir el archivo .Rmd en el tipo de documento de salida deseado. Su objetivo es convertir la sintaxis markdown (texto), por lo que tambien necesitamos... knitr y pacdoc
+
+      -knitr: este paquete de R leera los trozos de codigo, los ejecutara y los tejera dentro del documento. Asi es como se incluyen las tablas y los graficos junto al texto.
+
+      -Pandoc: por ultimo, pandoc convierte el documento de salida en word/pdf/powerpoint, etc. Es un software independiente de R y viene instalado con RStudio.
+
       
+      Instalacion:
+
+      Para crear una salida de R Markdown, necesitamos tener instalado:
+
+      -El paquete rmarkdown (knitr se instalara automaticamente)
+
+      -Pandoc, que deberia venir instalado en RStudio.
+
+      -Si queremos generar una salida en PDF, necesitamos instalar LaTeX. Para los usuarios de R Marldown que no hayamos instalado LaTeX antes, se recomienda instalar "TinyTeX" 
+
+      TinyTeX: es la version ligera de LaTeX para R que ha hecho Yihui Xie. MikTeX es la version de LaTeX completa para ordenador, pero requiere cierta paciencia y un aprendizaje que no todo el mundo es capaz de sacrificar, es de instalacion complicada. Si solo utilizas LaTeX desde R, la mejor opcion es usar la version ligera de R, que se puede instalar desde el mismo entorno de RStudio.
+
