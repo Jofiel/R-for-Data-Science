@@ -321,5 +321,133 @@ $ Q8     <chr> "Very Good", "Very Good", "Good", "Good", "Good", "Good", "Very G
     INSTALAR PACKAGES DESDE GITHUB:
 
 
-    A veces, necesitas instalar un paquete que aun no esta disponible en CRAN. O tal ve
-    
+    A veces, necesitas instalar un paquete que aun no esta disponible en CRAN. O tal vez el paquete esta disponible en el CRAN pero quieres la version en de desarrollo con nuevas caracteristicas que aun no estan disponibles en el CRAN. Estas suelen estar alojadas en el sitio web github.com en un repositorio de codigo gratuito y de acceso publico.
+
+    Para instalar desde GitHub, tienes que instalar mas informacion:
+
+    1. El Id de Github del propietario del repositorio.
+    2. El nombre del reporsitorio que contiene el paquete.
+    3. (opcional) El nombre de la "rama" (version de desarrollo especifica) que quieras descargar.
+
+    Ejemplos: en los siguientes ejemplos, la primera palabra entre comillas es el ID de GitHub del propietario del repositorio, despues de la barra es el nombre del repositorio (el nombre del paquete)
+
+# instala/carga el paquete epicontacts desde su repositorio de Github
+> p_load_gh("reconhub/epicontacts")
+
+    Si queremos instalar desde una "rama" (version) distinta de la rama principal, añade el nombre de la rama tras una @ despues del nombre del repositorio.
+
+# instala el paquete epicontacts de la rama "timeline" desde Github
+> p_load_gh("reconhub/epicontacts@timeline")
+
+
+    INSTALAR DESDE ZIP O TAR:
+
+    Se puede instalar el paquete desde una URL (Localizador Uniforme de Recursos):
+
+> packageurl <- "https://cran.r-project.org/src/contrib/Archive/dsr/dsr_0.2.2.tar.gz"
+> install.packages(packagurl, repos=NULL, type="source)
+
+    O bien descargarlo en nuestro ordenador en un archivo comprimido, 
+    1. usar la funcion install_local() del paquete remotes
+
+> remotes::install_local("~/Downloads/dplyr-master.zip")
+
+    2. usar install.packages() de R base, proporcionando la ruta del archivo ZIP y estableciendo type="source" y repos=NULL
+
+>install.packages("~/Downloads/dplyr-master.zip", repos=NULL, type="source")
+
+
+
+    SINTAXIS DEL CODIGO:
+
+    Para mayor claridad, las funciones van precedidas por el nombre de su paquete utilizando el simbolo :: de la siguiente manera: "nombre_paquete::nombre_funcion()"
+
+    Una vez cargado un paquete para una sesion, este estilo explicito no es necesario. Se puede utilizar simplemente "nombre_funcion()". Sin embargo escribir el nombre de la funcion puede resultar necesario cuando el nombre de la funcion puede ser ambiguo y puede existir en mas de un paquete. Escribir el nombre del paquete tambien cargara el paquete en la sesion actual si no esta todavia cargado.
+
+# Este comando usa el packages "rio" y la funcion "import()" para importar un dataset
+> linelist <- rio::import("linelist.xlsx", which="Sheet1")
+
+
+
+    AYUDA SOBRE UNA FUNCION:
+
+    Para leer mas sobre una funcion, se puede buscar en la pestaña "help" en la parte inferior derecha de RStudio. Tambien se puede ejecutar el comando "?nombre_funcio" aparecera la pagina de ayuda en la pestaña de ayuda. 
+
+
+    ELIMINAR PAQUETES:
+
+    Podemos utilizar la funcion "p_delete()" del paquete "pacman" o remove.packages() del paquete "utils". Alternativamente puedes buscar la carpeta que contiene el paquete en tu libreria y borrarla manualmente.
+
+
+    DEPENDENCIAS:
+
+    Los paquetes a menudo dependen de otros paquetes para funcionar. Estos se llaman dependencias. Si una dependencia no esta instalada, entonces el paquete que depende de ella tambien puede no instalarse. 
+    Se pueden ver las dependencias de un paquete con "pacman::p_depends()", o ver que paquetes dependen de el con "pacman::p_depends_reverse()"
+
+    Por ejemplo: veamos las dependencias de el packages "tidyverse"
+
+> pacman::p_depends("tidyverse")
+$Imports
+ [1] "broom"         "conflicted"    "cli"           "dbplyr"        "dplyr"         "dtplyr"        "forcats"       "ggplot2"       "googledrive"   "googlesheets4"
+[11] "haven"         "hms"           "httr"          "jsonlite"      "lubridate"     "magrittr"      "modelr"        "pillar"        "purrr"         "ragg"         
+[21] "readr"         "readxl"        "reprex"        "rlang"         "rstudioapi"    "rvest"         "stringr"       "tibble"        "tidyr"         "xml2"  
+
+    Son todos los paquetes de los cuales depende "tidyverse"
+
+
+    FUNCIONES ENMASCARADAS:
+
+    No es raro que dos o mas paquetes contengan el mismo nombre de una funcion. Por ejemplo, el paquete "dplyr" tiene la funcion filter(), pero tambien la tiene el paquete "stats". La funcion filter() por defecto depende del orden en que estos paquetes se cargan por primera vez en la sesion de R el ultimo sera el predeterminado para la funcion filter().
+
+    Cuando se carga por primera vez un paquete, R advertira en la consola si se esta produciendo un enmascaramiento. Pero puede ser facil pasarlo por alto.
+
+    Aqui hay dos maneras de arreglar el enmascaramiento:
+
+      1. Especifica el nombre del paquete en el comando. por ejemplo "dplyr::filter()"
+      2. Reordena el orden de la carga de los paquetes por ejemplo, dentro de p_load() e inicia una nueva sesion en R
+
+
+  
+  3.8 SCRIPTS:
+
+    Los scripts son una parte fundamental de la programacion. Son documentos que contienen comandos (por ejemplo, funciones para crear y modificar datos, imprimir visualizaciones, etc). Podemos guardar un script y volverlo a ejecutar mas tarde. Almacenar y ejecutar nuestros comandos desde un script tiene muchas ventajas:
+
+      1. Portabilidad: puedes compartir tu trabajo con otros enviando tus scripts
+      2. Reproducibilidad: para que tu y los demas sepan exactamente lo que se ha hecho.
+      3. Control de versiones: para que puedas hacer un seguimiento de los cambios realizados por ti mismo o por tus colegas
+      4. Comentarios/anotaciones: para explicar a tus compañeros lo que has hecho o a ti mismo.
+
+    COMENTARIOS:
+    En un script tambien puedes comentar alrededor de tu codigo R. Los comentarios son utiles para comentarte a ti mismo y a otros lectores los que estamos haciendo. Podemos agregar un comentario con el simbolo "#" y el comentarios seguido. El texto comentado aparecera en un color diferente.
+
+    El codigo despues de # no se ejecutara.
+    Colocar un # antes del codigo es tambien una forma temporal de bloquear una linea de codigo (comentarala, si no queremos borrarla).
+    Podemos comentar varias lineas a la vez resaltandolas y clicando "Ctrl + Shift + c"
+
+    Consejos:
+
+      -Comemta lo que haces.
+      -Divide tu codigo en secciones logicas.
+      -Acompaña tu codigo con un texto describiendo paso a paso lo que esta haciendo (pasos enumerados)
+
+    ESTILO: (consultar guia de estilo tidyverse en "3 Fundamentos de R/3.8 Estilo/guia de estilo tidyverse")
+
+    Consejos de estilo:
+
+      -Al nombrar objetos, utiliza solo letras minusculas, numeros o guiones bajos, por ejemplo:
+       mis_datos
+      -Utiliza espacios frecuentemente, incluso alrededor de los operadores, por ejemplo:
+       n = 1, edad_nueva <- edad_vieja + 3
+
+  
+    R markdown:
+
+      Un script en R markdown es un tipo de script en R en el que el propio script se convierte en un documento de salida (PDF, Word, HTML, Powerpoint, etc). Se trata de herramientas increiblemente utiles y versatiles que suelen utilizarse para crear informe dinamicos y automatizados. 
+
+      Para saber mas utilizar el manual sobre "Informes con R Markdown"
+
+      INFORMES Y DASHBOARDS:
+
+      R Markdown es una herramienta ampliamente utilizada para crear documentos de salida automatizados, repoducibles para compartir, ejemplo, informes. Podemos generar resultados estaticos o interactivos en word, pdf, html, powerpoint etc.
+
+      
