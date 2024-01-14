@@ -627,12 +627,36 @@ output: html_document
 
           -knitr::opts_chunk$set(echo=FALSE)
 
-        Codigo R en el texto
+      -Codigo R en el texto:
+
+        Tambien podemos insertar un minimo de codigo R entre comillas invertidas (back ticks) intercalado entre el texto narrativo. Dentro de las comillas invertidas comienza el codigo con la letra "r" y un espacio, para que RStudio sepa que debe evaluar el codigo como R.
+
+        Ejemplo: el siguiente script calcula la proporcion de casos que tienen menos de 18 años, utilizando funciones tidyverse y crea objetos less18, total y less18prom. Este valor dinamico se inserta en el texto narrativo:
 
 
 
+        ## Perfiles de edades
+
+        ```{r Perfil_edades}
+
+        #Calcula el numero de edad menores a 18
+        less18 <- linelist_sub %>%
+          filter(age_years<=18) %>%
+          nrow()
+
+        #Calcula el total de numeros con edad faltante
+        total <- linelist_sub %>% filter(!is.na(age_years)) %>% nrow()
+
+        #Calcula la proporcion de 18 años sin edad, redondeado a un decimal
+        less18prop <- round(less18/total*100,1)        
+        ``` 
+
+        `r less18prop`% de casos donde su edad es menor a 18 años (`r less18` of `r total`)
+
+        Lo que imprime es:
+
+        Perfil de edades
+        66.5% de casos donde su edad es meor a 18 años (296 de 445)
 
 
-
-
-
+      -
